@@ -1,8 +1,6 @@
 # Leaflet.LanguageSelector
 
-A language selector for Leaflet based maps
-
-Feel free to flattr me if you like it: [![alttext](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=Kranich&url=https%3A%2F%2Fgithub.com%2Fbuche%2Fleaflet-languageselector)
+A language selector for Leaflet based maps.
 
 ## Description
 [Leaflet](http://leafletjs.com/) is an open-source JavaScript library for online maps. Leaflet-languageselector is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
