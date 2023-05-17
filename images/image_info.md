@@ -11,6 +11,7 @@ We only take images that are public domain.
 - eo.svg: https://openclipart.org/detail/91837/esperanta-flago
 - fi.svg: https://openclipart.org/detail/17744/flag-of-finland
 - fr.svg: https://openclipart.org/detail/246307/flag-of-france
+- ko.svg: https://openclipart.org/detail/8034/south-korean-flag
 - ru.svg: https://openclipart.org/detail/258414/Flag-of-Russia
 
 All images are edited with the following steps:

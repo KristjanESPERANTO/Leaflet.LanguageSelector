@@ -16,6 +16,7 @@ function main() {
     L.langObject('eo', 'Esperanto'),
     L.langObject('fi', 'Suomi'),
     L.langObject('fr', 'Français'),
+    L.langObject('ko', '한국인'),
     L.langObject('ru', 'Русский')
   ];
   let languageArrayWithIcons = [
@@ -24,6 +25,7 @@ function main() {
     L.langObject('eo', 'Esperanto', '../images/eo.svg'),
     L.langObject('fi', 'Suomi',     '../images/fi.svg'),
     L.langObject('fr', 'Français',  '../images/fr.svg'),
+    L.langObject('ko', '한국인',     '../images/ko.svg'),
     L.langObject('ru', 'Русский',   '../images/ru.svg')
   ];
 
