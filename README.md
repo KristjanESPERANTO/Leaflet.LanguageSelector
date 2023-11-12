@@ -13,7 +13,7 @@ A demo page with different configurations you can find at [/demo/demo.html](/dem
 Maps using this library (and others) can be seen here:
 
 - <https://ahorn.lima-city.de/owm/> [(GitHub)](https://github.com/buche/leaflet-openweathermap)
-- <https://www.veggiekarte.de> [(GitHub)](https://github.com/piratenpanda/veggiekarte)
+- <https://www.veggiekarte.de> [(Codeberg)](https://codeberg.org/piratenpanda/veggiekarte)
 
 ## License
 
