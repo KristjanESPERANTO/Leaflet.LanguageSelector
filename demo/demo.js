@@ -7,7 +7,7 @@
  * @param String paramVal the value of the parameter
  * @return String the changed URL
  */
-function updateURLParameter(url, param, paramVal) {
+function updateURLParameter (url, param, paramVal) {
   let theAnchor = null;
   let newAdditionalURL = "";
   let tempArray = url.split("?");
@@ -53,7 +53,7 @@ function updateURLParameter(url, param, paramVal) {
  * Change the language
  * @param String id of the language
  */
-function changeLanguage(selectedLanguage) {
+function changeLanguage (selectedLanguage) {
   // Add or replace the language parameter of the URL
   window.history.replaceState({}, "", updateURLParameter(window.location.href, "lang", selectedLanguage));
 
@@ -64,13 +64,13 @@ function changeLanguage(selectedLanguage) {
   document.getElementById("language").innerText = `Swiched to: '${selectedLanguage}'`;
 }
 
-function main() {
+function main () {
   const map = L.map("map", {
     zoomControl: false
   }).setView([0, 0], 2);
 
   L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
   }).addTo(map);
 
   const languageArray = [

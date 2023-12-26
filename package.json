@@ -1,6 +1,6 @@
 {
   "name": "leaflet.languageselector",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A language selector for Leaflet based maps",
   "main": "leaflet.languageselector.js",
   "repository": {
@@ -14,17 +14,16 @@
   },
   "homepage": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme",
   "devDependencies": {
+    "@eslint/js": "latest",
+    "@stylistic/eslint-plugin": "latest",
     "eslint": "^8.56.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-json": "^3.1.0",
-    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-json": "latest",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-prettier": "^4.1.0"
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "latest",
+    "stylelint-prettier": "latest"
   },
   "scripts": {
     "lint": "eslint . && stylelint **/*.css && prettier --check .",

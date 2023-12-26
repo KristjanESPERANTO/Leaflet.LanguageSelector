@@ -4,7 +4,7 @@
  * Adds a language selector to Leaflet based maps.
  * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
  * Project page: https://github.com/buche/leaflet-languageselector
- * */
+ */
 
 const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
@@ -23,7 +23,7 @@ L.LanguageSelector = L.Control.extend({
     button: true
   },
 
-  initialize(options) {
+  initialize (options) {
     this._buttons = [];
     L.Util.setOptions(this, options);
     this._container = L.DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
@@ -31,33 +31,7 @@ L.LanguageSelector = L.Control.extend({
     this._createLanguageSelector(this._container);
   },
 
-  onAdd(map) {
-    this._map = map;
-    if (this.options.button) {
-      L.DomUtil.addClass(this._container, buttonClassName);
-      L.DomEvent.on(this._container, "mouseup", this._openSelector, this);
-
-      // Add listener to the map to close the button on click on the map
-      L.DomEvent.addListener(this._map, "click", () => {
-        const languageButtonDisabled = document.getElementsByClassName(buttonDisabledClassName)[0];
-        if (languageButtonDisabled !== undefined) {
-          languageButtonDisabled.classList.remove(buttonDisabledClassName);
-          languageButtonDisabled.classList.add(buttonClassName);
-        }
-      });
-    }
-    return this._container;
-  },
-
-  onRemove() {
-    if (this.options.button) {
-      L.DomEvent.off(this._container, "mouseup", this._openSelector, this);
-    }
-    this._container.style.display = "none";
-    this._map = null;
-  },
-
-  _createLanguageSelector(container) {
+  _createLanguageSelector (container) {
     if (this.options.title) {
       const titleDiv = L.DomUtil.create("div", "leaflet-languageselector-title", container);
       titleDiv.innerHTML = this.options.title;
@@ -66,16 +40,21 @@ L.LanguageSelector = L.Control.extend({
     for (let i1 = 0; i1 < this.options.languages.length; i1 += 1) {
       const lang = this.options.languages[i1];
       const langDiv = L.DomUtil.create(
-        "div",
-        `leaflet-languageselector-langdiv${this.options.vertical ? "" : " leaflet-languageselector-float-left"}${i1 > 0 ? " leaflet-languageselector-mleft" : ""}`,
-        languagesDiv
-      );
+        "div", `leaflet-languageselector-langdiv${this.options.vertical
+          ? ""
+          : " leaflet-languageselector-float-left"}${i1 > 0
+          ? " leaflet-languageselector-mleft"
+          : ""}`, languagesDiv);
       if (lang.image) {
         const img = L.DomUtil.create("img", "", langDiv);
         img.src = lang.image;
-        img.title = lang.displayText ? lang.displayText : lang.id;
+        img.title = lang.displayText
+          ? lang.displayText
+          : lang.id;
       } else {
-        langDiv.innerHTML = lang.displayText ? lang.displayText : lang.id;
+        langDiv.innerHTML = lang.displayText
+          ? lang.displayText
+          : lang.id;
       }
       langDiv.id = `languageselector_${lang.id}`;
       langDiv._langselinstance = this;
@@ -95,13 +74,19 @@ L.LanguageSelector = L.Control.extend({
     }
   },
 
-  _languageChanged(pEvent) {
+  _isButton () {
+    return L.DomUtil.hasClass(this._container, buttonClassName);
+  },
+
+  _languageChanged (pEvent) {
     let elem = pEvent.target;
     if (!elem._langselinstance) {
       elem = elem.parentElement;
     }
     const inst = elem._langselinstance;
-    const lang = elem.id.substr(0, 17) === "languageselector_" ? elem.id.substr(17) : null;
+    const lang = elem.id.substr(0, 17) === "languageselector_"
+      ? elem.id.substr(17)
+      : null;
 
     // Hide language button
     if (inst.options.hideSelected) {
@@ -133,26 +118,44 @@ L.LanguageSelector = L.Control.extend({
     }
   },
 
-  _isButton() {
-    return L.DomUtil.hasClass(this._container, buttonClassName);
-  },
-
-  _openSelector() {
+  _openSelector () {
     if (this._isButton()) {
       L.DomUtil.removeClass(this._container, buttonClassName);
       L.DomUtil.addClass(this._container, buttonDisabledClassName);
     }
+  },
+
+  onAdd (map) {
+    this._map = map;
+    if (this.options.button) {
+      L.DomUtil.addClass(this._container, buttonClassName);
+      L.DomEvent.on(this._container, "mouseup", this._openSelector, this);
+
+      // Add listener to the map to close the button on click on the map
+      L.DomEvent.addListener(this._map, "click", () => {
+        const languageButtonDisabled = document.getElementsByClassName(buttonDisabledClassName)[0];
+        if (typeof languageButtonDisabled !== "undefined") {
+          languageButtonDisabled.classList.remove(buttonDisabledClassName);
+          languageButtonDisabled.classList.add(buttonClassName);
+        }
+      });
+    }
+    return this._container;
+  },
+
+  onRemove () {
+    if (this.options.button) {
+      L.DomEvent.off(this._container, "mouseup", this._openSelector, this);
+    }
+    this._container.style.display = "none";
+    this._map = null;
   }
 });
 
-L.langObject = (langId, text, img) => {
-  return {
-    id: langId,
-    displayText: text,
-    image: img
-  };
-};
+L.langObject = (langId, text, img) => ({
+  displayText: text,
+  id: langId,
+  image: img
+});
 
-L.languageSelector = (options) => {
-  return new L.LanguageSelector(options);
-};
+L.languageSelector = (options) => new L.LanguageSelector(options);
