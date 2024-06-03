@@ -21,7 +21,7 @@
     "eslint-plugin-json": "latest",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.2",
-    "stylelint": "^16.3.0",
+    "stylelint": "^16.6.1",
     "stylelint-config-standard": "latest",
     "stylelint-prettier": "latest"
   },
