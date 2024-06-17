@@ -20,7 +20,7 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-json": "latest",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.2.2",
+    "prettier": "^3.3.2",
     "stylelint": "^16.3.0",
     "stylelint-config-standard": "latest",
     "stylelint-prettier": "latest"
