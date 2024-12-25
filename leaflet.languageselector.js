@@ -23,7 +23,7 @@ L.LanguageSelector = L.Control.extend({
     button: true
   },
 
-  initialize (options) {
+  initialize(options) {
     this._buttons = [];
     L.Util.setOptions(this, options);
     this._container = L.DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
@@ -31,7 +31,7 @@ L.LanguageSelector = L.Control.extend({
     this._createLanguageSelector(this._container);
   },
 
-  _createLanguageSelector (container) {
+  _createLanguageSelector(container) {
     if (this.options.title) {
       const titleDiv = L.DomUtil.create("div", "leaflet-languageselector-title", container);
       titleDiv.innerHTML = this.options.title;
@@ -51,7 +51,8 @@ L.LanguageSelector = L.Control.extend({
         img.title = lang.displayText
           ? lang.displayText
           : lang.id;
-      } else {
+      }
+      else {
         langDiv.innerHTML = lang.displayText
           ? lang.displayText
           : lang.id;
@@ -60,7 +61,8 @@ L.LanguageSelector = L.Control.extend({
       langDiv._langselinstance = this;
       if (langDiv.addEventListener) {
         langDiv.addEventListener("mouseup", this._languageChanged, false);
-      } else {
+      }
+      else {
         langDiv.attachEvent("onmouseup", this._languageChanged);
       }
       if (this.options.hideSelected && this.options.initialLanguage && this.options.initialLanguage === lang.id) {
@@ -74,11 +76,11 @@ L.LanguageSelector = L.Control.extend({
     }
   },
 
-  _isButton () {
+  _isButton() {
     return L.DomUtil.hasClass(this._container, buttonClassName);
   },
 
-  _languageChanged (pEvent) {
+  _languageChanged(pEvent) {
     let elem = pEvent.target;
     if (!elem._langselinstance) {
       elem = elem.parentElement;
@@ -91,41 +93,43 @@ L.LanguageSelector = L.Control.extend({
     // Hide language button
     if (inst.options.hideSelected) {
       for (let i = 0; i < inst._buttons.length; i += 1) {
-        const b = inst._buttons[i];
-        if (b.id === elem.id) {
-          b.style.display = "none";
-        } else {
-          b.style.display = "block";
+        const button = inst._buttons[i];
+        if (button.id === elem.id) {
+          button.style.display = "none";
+        }
+        else {
+          button.style.display = "block";
         }
       }
     }
 
     // Mark initial language button
     for (let i = 0; i < inst._buttons.length; i += 1) {
-      const b = inst._buttons[i];
-      if (b.id === elem.id) {
-        b.style.backgroundColor = "#0005";
-        b.style.pointerEvents = "none";
-      } else {
-        b.style.background = "";
-        b.style.pointerEvents = "";
+      const button = inst._buttons[i];
+      if (button.id === elem.id) {
+        button.style.backgroundColor = "#0005";
+        button.style.pointerEvents = "none";
+      }
+      else {
+        button.style.background = "";
+        button.style.pointerEvents = "";
       }
     }
 
-    // callback
+    // Callback
     if (inst.options.callback && typeof inst.options.callback === "function") {
       inst.options.callback(lang);
     }
   },
 
-  _openSelector () {
+  _openSelector() {
     if (this._isButton()) {
       L.DomUtil.removeClass(this._container, buttonClassName);
       L.DomUtil.addClass(this._container, buttonDisabledClassName);
     }
   },
 
-  onAdd (map) {
+  onAdd(map) {
     this._map = map;
     if (this.options.button) {
       L.DomUtil.addClass(this._container, buttonClassName);
@@ -143,7 +147,7 @@ L.LanguageSelector = L.Control.extend({
     return this._container;
   },
 
-  onRemove () {
+  onRemove() {
     if (this.options.button) {
       L.DomEvent.off(this._container, "mouseup", this._openSelector, this);
     }
@@ -158,4 +162,4 @@ L.langObject = (langId, text, img) => ({
   image: img
 });
 
-L.languageSelector = (options) => new L.LanguageSelector(options);
+L.languageSelector = options => new L.LanguageSelector(options);
