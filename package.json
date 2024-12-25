@@ -14,20 +14,27 @@
   },
   "homepage": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme",
   "devDependencies": {
-    "@eslint/js": "latest",
-    "@stylistic/eslint-plugin": "latest",
-    "eslint": "^8.56.0",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-json": "latest",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.2.2",
-    "stylelint": "^16.3.0",
-    "stylelint-config-standard": "latest",
-    "stylelint-prettier": "latest"
+    "@eslint/js": "^9.17.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "eslint": "^9.17.0",
+    "eslint-plugin-import-x": "^4.6.1",
+    "eslint-plugin-jsonc": "^2.18.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.12.0",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-prettier": "^5.0.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix"
   },
   "scripts": {
-    "lint": "eslint . && stylelint **/*.css && prettier --check .",
-    "lint:fix": "eslint --fix . && stylelint --fix **/*.css && prettier --write .",
-    "test": "npm run lint"
-  }
+    "lint": "eslint && stylelint **/*.css && prettier --check .",
+    "lint:fix": "eslint --fix && stylelint --fix **/*.css && prettier --write .",
+    "test": "npm run lint",
+    "prepare": "husky"
+  },
+  "type": "module"
 }
