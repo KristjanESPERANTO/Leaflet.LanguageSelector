@@ -56,13 +56,13 @@ L.control.layers(baseMaps).addTo(map);
 // Now the interesting stuff, the new languageselector:
 map.addControl(
   L.languageSelector({
-    languages: new Array(
+    languages: [
       L.langObject("en", "English", "en.svg"),
       L.langObject("eo", "Esperanto", "eo.svg"),
       L.langObject("de", "Deutsch", "de.svg"),
       L.langObject("fr", "Français", "fr.svg"),
       L.langObject("ru", "Русский", "ru.svg")
-    ),
+    ],
     callback: changeLanguage
   })
 );
@@ -72,7 +72,7 @@ map.addControl(
 
 Some _options_ are available to configure the behaviour of the language selector. Only two options are mandatory: **languages** - the array of languages we will use and **callback** - the callback function which will be called when the user selects a language. Here are all options, the **default value** is bold:
 
-- _languages_: Array ( **new Array()** ) array of at least one Object with language information. See below for details.
+- _languages_: Array ( **[]** ) array of at least one Object with language information. See below for details.
 - _callback_: Function ( **null** ) callback function with one string parameter, the id of the language
 - _title_: String ( **null** ) optional: Title of the control
 - _vertical_: Boolean ( **false** ) optional: If _true_ renders the languages vertically instead of horizontally

@@ -35,15 +35,12 @@
 }
 
 .leaflet-languageselector-float-left {
-  float: left;
-}
-
-.leaflet-languageselector-mleft {
+  display: inline-block;
 }
 
 .leaflet-languageselector-langdiv {
   cursor: pointer;
-  padding: 7px 3px 3px 3px;
+  padding: 7px 3px 3px;
 }
 
 .leaflet-languageselector-langdiv:hover {
