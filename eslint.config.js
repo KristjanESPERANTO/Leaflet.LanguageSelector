@@ -1,12 +1,12 @@
-import eslintPluginImportX from "eslint-plugin-import-x";
 import eslintPluginJs from "@eslint/js";
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginStylistic from "@stylistic/eslint-plugin";
+import { flatConfigs } from "eslint-plugin-import-x";
 import globals from "globals";
 
 const config = [
   eslintPluginJs.configs.all,
-  eslintPluginImportX.flatConfigs.recommended,
+  flatConfigs.recommended,
   ...eslintPluginJsonc.configs["flat/recommended-with-json"],
   {
     ignores: [
