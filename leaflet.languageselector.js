@@ -144,6 +144,13 @@ L.LanguageSelector = L.Control.extend({
     if (this.options.button) {
       L.DomEvent.off(this._container, "mouseup", this._openSelector, this);
     }
+    // Detach event listeners from language buttons to avoid leaks
+    if (Array.isArray(this._buttons)) {
+      for (let i = 0; i < this._buttons.length; i += 1) {
+        const button = this._buttons[i];
+        button.removeEventListener("mouseup", this._languageChanged, false);
+      }
+    }
     this._container.style.display = "none";
     this._map = null;
   }
