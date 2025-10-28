@@ -3,7 +3,7 @@
 /**
  * Adds a language selector to Leaflet based maps.
  * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
- * Project page: https://github.com/buche/leaflet-languageselector
+ * Project page: https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector
  */
 
 const buttonClassName = "leaflet-control-languageselector-button";

@@ -4,7 +4,11 @@ A language selector for Leaflet based maps.
 
 ## Description
 
-[Leaflet](http://leafletjs.com/) is an open-source JavaScript library for online maps. Leaflet-languageselector is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
+[Leaflet](https://leafletjs.com/) is an open-source JavaScript library for online maps. **Leaflet.LanguageSelector** is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
+
+## Compatibility
+
+- Supported Leaflet versions: 1.9.x and 2.0.x
 
 ## Demo
 
@@ -21,7 +25,7 @@ This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1
 
 ## Using Leaflet.LanguageSelector
 
-First, you have to define the languages. Second, you have to initialise the language selector. Third, you have to provide a callback function which reacts according to the changed language. Don't forget to include leaflet-languageselector.js and leaflet-languageselector.css in your website.
+First, you have to define the languages. Second, you have to initialize the language selector. Third, you have to provide a callback function which reacts according to the changed language. Don't forget to include `leaflet.languageselector.js` and `leaflet.languageselector.css` in your website.
 
 ## Simple Example
 
@@ -30,8 +34,8 @@ Here are the most important lines:
 ```html
 <head>
   <script type="text/javascript" src="leaflet.js"></script>
-  <link rel="stylesheet" type="text/css" href="leaflet-languageselector.css" />
-  <script src="leaflet-languageselector.js"></script>
+  <link rel="stylesheet" type="text/css" href="leaflet.languageselector.css" />
+  <script src="leaflet.languageselector.js"></script>
 </head>
 ```
 
@@ -93,7 +97,7 @@ If you provide an image, the image will be displayed as a symbol for the languag
 
 ## Stylesheet
 
-_leaflet-languageselector.css_ is used to style the components of the control. Adapt it as you like.
+_leaflet.languageselector.css_ is used to style the components of the control. Adapt it as you like.
 
 ## Language images
 
