@@ -27,10 +27,10 @@ const config = [
       sourceType: "module"
     },
     plugins: {
-      ...eslintPluginStylistic.configs["recommended-flat"].plugins
+      ...eslintPluginStylistic.configs.recommended.plugins
     },
     rules: {
-      ...eslintPluginStylistic.configs["recommended-flat"].rules,
+      ...eslintPluginStylistic.configs.recommended.rules,
       "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/comma-dangle": ["error", "never"],
       "@stylistic/dot-location": ["error", "property"],
@@ -51,7 +51,7 @@ const config = [
       "init-declarations": "off",
       "max-depth": ["warn", 5],
       "max-lines": ["warn", 500],
-      "max-lines-per-function": ["warn", 175],
+      "max-lines-per-function": ["warn", 200],
       "max-params": ["warn", 5],
       "max-statements": "off",
       "no-await-in-loop": "off",
