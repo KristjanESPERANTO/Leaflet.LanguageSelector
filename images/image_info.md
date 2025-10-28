@@ -7,10 +7,12 @@ We only take images that are public domain.
 **License**: [Creative Commons Zero 1.0 Public Domain](https://openclipart.org/share "Creative Commons Zero 1.0 Public Domain")
 
 - de.svg: <https://openclipart.org/detail/296539/german-flag>
+- ca.svg: <https://openclipart.org/detail/257351/flag-of-catalonia>
 - en.svg: <https://openclipart.org/detail/326131/flag-uk>
 - eo.svg: <https://openclipart.org/detail/91837/esperanta-flago>
 - fi.svg: <https://openclipart.org/detail/17744/flag-of-finland>
 - fr.svg: <https://openclipart.org/detail/246307/flag-of-france>
+- es.svg: <https://openclipart.org/detail/17279/flag-of-spain>
 - it.svg: <https://openclipart.org/detail/246302/flag-of-italy>
 - ko.svg: <https://openclipart.org/detail/8034/south-korean-flag>
 - ru.svg: <https://openclipart.org/detail/258414/Flag-of-Russia>

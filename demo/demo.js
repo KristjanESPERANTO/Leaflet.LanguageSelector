@@ -75,20 +75,26 @@ function main() {
   }).addTo(map);
 
   const languageArray = [
+    L.langObject("ca", "Català"),
     L.langObject("de", "Deutsch"),
     L.langObject("en", "English"),
     L.langObject("eo", "Esperanto"),
+    L.langObject("es", "Español"),
     L.langObject("fi", "Suomi"),
     L.langObject("fr", "Français"),
+    L.langObject("it", "Italiano"),
     L.langObject("ko", "한국어"),
     L.langObject("ru", "Русский")
   ];
   const languageArrayWithIcons = [
+    L.langObject("ca", "Català", "../images/ca.svg"),
     L.langObject("de", "Deutsch", "../images/de.svg"),
     L.langObject("en", "English", "../images/en.svg"),
     L.langObject("eo", "Esperanto", "../images/eo.svg"),
+    L.langObject("es", "Español", "../images/es.svg"),
     L.langObject("fi", "Suomi", "../images/fi.svg"),
     L.langObject("fr", "Français", "../images/fr.svg"),
+    L.langObject("it", "Italiano", "../images/it.svg"),
     L.langObject("ko", "한국어", "../images/ko.svg"),
     L.langObject("ru", "Русский", "../images/ru.svg")
   ];
