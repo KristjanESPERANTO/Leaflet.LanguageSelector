@@ -32,7 +32,7 @@ L.LanguageSelector = L.Control.extend({
   _createLanguageSelector(container) {
     if (this.options.title) {
       const titleDiv = L.DomUtil.create("div", "leaflet-languageselector-title", container);
-      titleDiv.innerHTML = this.options.title;
+      titleDiv.textContent = this.options.title;
     }
     const languagesDiv = L.DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
     for (let i1 = 0; i1 < this.options.languages.length; i1 += 1) {
@@ -51,7 +51,7 @@ L.LanguageSelector = L.Control.extend({
           : lang.id;
       }
       else {
-        langDiv.innerHTML = lang.displayText
+        langDiv.textContent = lang.displayText
           ? lang.displayText
           : lang.id;
       }
