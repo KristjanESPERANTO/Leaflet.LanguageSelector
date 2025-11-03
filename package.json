@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme",
   "devDependencies": {
-    "@eslint/js": "^9.38.0",
+    "@eslint/js": "^9.39.1",
     "@stylistic/eslint-plugin": "^5.5.0",
     "eslint": "^9.38.0",
     "eslint-plugin-import-x": "^4.16.1",
