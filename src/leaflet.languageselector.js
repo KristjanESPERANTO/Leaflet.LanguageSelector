@@ -9,7 +9,11 @@
 const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
 
-L.LanguageSelector = L.Control.extend({
+/**
+ * LanguageSelector Control for Leaflet maps.
+ * Extends Leaflet's Control class.
+ */
+const LanguageSelector = L.Control.extend({
   options: {
     languages: [],
     callback: null,
@@ -172,10 +176,47 @@ L.LanguageSelector = L.Control.extend({
   }
 });
 
-L.langObject = (langId, text, img) => ({
+/**
+ * Creates a language object for use with the language selector.
+ * @param {string} langId - The language identifier (e.g., 'en', 'de')
+ * @param {string} text - The display text for the language
+ * @param {string} [img] - Optional path to a flag/icon image
+ * @returns {object} Language object with id, displayText, and optional image
+ * @example
+ * const lang = langObject('en', 'English', './flags/en.svg');
+ */
+const langObject = (langId, text, img) => ({
   displayText: text,
   id: langId,
   image: img
 });
 
-L.languageSelector = options => new L.LanguageSelector(options);
+/**
+ * Callback function for language changes
+ * @callback LanguageChangeCallback
+ * @param {string} langId - The ID of the selected language
+ */
+
+/**
+ * Factory function to create a LanguageSelector control.
+ * @param {object} options - Configuration options for the language selector
+ * @param {Array} options.languages - Array of language objects created with langObject()
+ * @param {LanguageChangeCallback} options.callback - Callback function invoked when language changes
+ * @param {string} [options.title] - Optional title displayed above the language selector
+ * @param {string} [options.position] - Position on the map ('topright', 'topleft', 'bottomright', 'bottomleft')
+ * @param {boolean} [options.hideSelected] - Whether to hide the currently selected language
+ * @param {boolean} [options.vertical] - Whether to display languages vertically (true) or horizontally (false)
+ * @param {string} [options.initialLanguage] - Initial language to be selected
+ * @param {boolean} [options.button] - Whether to display as a collapsible button
+ * @returns {LanguageSelector} New LanguageSelector control instance
+ * @example
+ * const control = languageSelector({
+ *   languages: [langObject('en', 'English'), langObject('de', 'Deutsch')],
+ *   callback: (langId) => console.log('Language changed to:', langId)
+ * });
+ * map.addControl(control);
+ */
+const languageSelector = options => new LanguageSelector(options);
+
+// Named exports for ES6 modules
+export { LanguageSelector, languageSelector, langObject };
