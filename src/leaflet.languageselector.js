@@ -71,20 +71,20 @@ const LanguageSelector = L.Control.extend({
         }
       };
       langDiv.addEventListener("keydown", langDiv._langselKeydown);
-      if (this.options.hideSelected && this.options.initialLanguage && this.options.initialLanguage === lang.id) {
-        langDiv.style.display = "none";
-      }
-      if (this.options.initialLanguage === lang.id) {
-        langDiv.style.backgroundColor = "#0005";
-        langDiv.style.pointerEvents = "none";
-        langDiv.setAttribute("aria-pressed", "true");
-        langDiv.setAttribute("aria-disabled", "true");
-      }
-      else {
-        langDiv.setAttribute("aria-pressed", "false");
-        langDiv.setAttribute("aria-disabled", "false");
-      }
+
+      // Set initial ARIA attributes
+      langDiv.setAttribute("aria-pressed", "false");
+      langDiv.setAttribute("aria-disabled", "false");
+
       this._buttons.push(langDiv);
+    }
+
+    // Set initial language if specified (reuse setLanguage logic)
+    if (this.options.initialLanguage) {
+      // Use setTimeout to ensure DOM is ready and _buttons array is populated
+      setTimeout(() => {
+        this.setLanguage(this.options.initialLanguage);
+      }, 0);
     }
   },
 
@@ -133,6 +133,31 @@ const LanguageSelector = L.Control.extend({
       L.DomUtil.removeClass(this._container, buttonClassName);
       L.DomUtil.addClass(this._container, buttonDisabledClassName);
     }
+  },
+
+  /**
+   * Programmatically set the language without user interaction.
+   * @param {string} langId - The language ID to switch to
+   * @returns {boolean} True if language was found and set, false otherwise
+   * @example
+   * const control = languageSelector({ languages: [...], callback });
+   * map.addControl(control);
+   * control.setLanguage('de'); // Switch to German programmatically
+   */
+  setLanguage(langId) {
+    // Find the button element for this language
+    const targetButton = this._buttons.find(button =>
+      button.id === `languageselector_${langId}`
+    );
+
+    if (!targetButton) {
+      console.warn(`Language '${langId}' not found in language selector`);
+      return false;
+    }
+
+    // Simulate a click event to reuse existing logic
+    this._languageChanged({ target: targetButton });
+    return true;
   },
 
   onAdd(map) {
