@@ -35,16 +35,15 @@ L.LanguageSelector = L.Control.extend({
       titleDiv.textContent = this.options.title;
     }
     const languagesDiv = L.DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
-    for (let i1 = 0; i1 < this.options.languages.length; i1 += 1) {
-      const lang = this.options.languages[i1];
+    for (const [index, lang] of this.options.languages.entries()) {
       const langDiv = L.DomUtil.create(
         "div", `leaflet-languageselector-langdiv${this.options.vertical
           ? ""
-          : " leaflet-languageselector-float-left"}${i1 > 0
+          : " leaflet-languageselector-float-left"}${index > 0
           ? " leaflet-languageselector-mleft"
           : ""}`, languagesDiv);
       // Accessibility: make the language option operable via keyboard/screen readers
-      const label = lang.displayText ? lang.displayText : lang.id;
+      const label = lang.displayText ?? lang.id;
       langDiv.setAttribute("role", "button");
       langDiv.setAttribute("tabindex", "0");
       langDiv.setAttribute("aria-label", label);
@@ -59,7 +58,7 @@ L.LanguageSelector = L.Control.extend({
       }
       langDiv.id = `languageselector_${lang.id}`;
       langDiv._langselinstance = this;
-      langDiv.addEventListener("mouseup", this._languageChanged, false);
+      langDiv.addEventListener("mouseup", this._languageChanged);
       // Keyboard support: activate on Enter/Space
       langDiv._langselKeydown = (event) => {
         if (event.key === "Enter" || event.key === " ") {
@@ -67,7 +66,7 @@ L.LanguageSelector = L.Control.extend({
           this._languageChanged({ target: langDiv });
         }
       };
-      langDiv.addEventListener("keydown", langDiv._langselKeydown, false);
+      langDiv.addEventListener("keydown", langDiv._langselKeydown);
       if (this.options.hideSelected && this.options.initialLanguage && this.options.initialLanguage === lang.id) {
         langDiv.style.display = "none";
       }
@@ -100,8 +99,7 @@ L.LanguageSelector = L.Control.extend({
       : null;
 
     // Hide/Show and mark selected language in a single pass
-    for (let i = 0; i < inst._buttons.length; i += 1) {
-      const button = inst._buttons[i];
+    for (const button of inst._buttons) {
       const isCurrent = button.id === elem.id;
       if (inst.options.hideSelected) {
         button.style.display = isCurrent ? "none" : "block";
@@ -161,11 +159,10 @@ L.LanguageSelector = L.Control.extend({
     }
     // Detach event listeners from language buttons to avoid leaks
     if (Array.isArray(this._buttons)) {
-      for (let i = 0; i < this._buttons.length; i += 1) {
-        const button = this._buttons[i];
-        button.removeEventListener("mouseup", this._languageChanged, false);
+      for (const button of this._buttons) {
+        button.removeEventListener("mouseup", this._languageChanged);
         if (button._langselKeydown) {
-          button.removeEventListener("keydown", button._langselKeydown, false);
+          button.removeEventListener("keydown", button._langselKeydown);
           button._langselKeydown = null;
         }
       }
