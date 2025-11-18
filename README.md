@@ -2,6 +2,34 @@
 
 A language selector for Leaflet based maps.
 
+## Installation
+
+Install via npm (recommended for modern build toolchains):
+
+```bash
+npm install @kristjan.esperanto/leaflet-language-selector
+```
+
+ESM import example:
+
+```js
+import "leaflet";
+import "@kristjan.esperanto/leaflet-language-selector";
+import "leaflet/dist/leaflet.css";
+import "@kristjan.esperanto/leaflet-language-selector/leaflet.languageselector.css";
+```
+
+Classic `<script>` / `<link>` usage:
+
+```html
+<link rel="stylesheet" href="leaflet.css" />
+<link rel="stylesheet" href="leaflet.languageselector.css" />
+<script src="leaflet.js"></script>
+<script src="leaflet.languageselector.js"></script>
+```
+
+Note: The plugin extends the global Leaflet object `L`.
+
 ## Description
 
 [Leaflet](https://leafletjs.com/) is an open-source JavaScript library for online maps. **Leaflet.LanguageSelector** is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
@@ -25,7 +53,7 @@ This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1
 
 ## Using Leaflet.LanguageSelector
 
-First, you have to define the languages. Second, you have to initialize the language selector. Third, you have to provide a callback function which reacts according to the changed language. Don't forget to include `leaflet.languageselector.js` and `leaflet.languageselector.css` in your website.
+First, you have to define the languages. Second, you have to initialize the language selector. Third, you have to provide a callback function which reacts according to the changed language. Ensure `leaflet.languageselector.js` and `leaflet.languageselector.css` are loaded (see installation section above).
 
 ## Simple Example
 
