@@ -9,6 +9,14 @@
   width: 30px;
 }
 
+/* Title style */
+.leaflet-languageselector-title {
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+}
+
 /* Hide title and languages when button is active */
 .leaflet-control-languageselector-button > .leaflet-languageselector-title,
 .leaflet-control-languageselector-button > .leaflet-languageselector-languagesdiv {
@@ -19,19 +27,11 @@
 .leaflet-languageselector-langdiv > img {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0 0 0 / 20%);
+  border-color: rgb(0 0 0 / 20%);
   border-radius: 3px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Title stlye */
-.leaflet-languageselector-title {
-  font-size: larger;
-  font-weight: bold;
-  text-align: center;
-  padding: 5px;
 }
 
 .leaflet-languageselector-float-left {

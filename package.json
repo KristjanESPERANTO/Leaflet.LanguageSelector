@@ -1,11 +1,17 @@
 {
   "name": "@kristjan.esperanto/leaflet-language-selector",
-  "version": "2.0.0",
+  "version": "3.0.0-alpha.1",
   "description": "A language selector for Leaflet based maps.",
-  "main": "leaflet.languageselector.js",
+  "main": "src/leaflet.languageselector.js",
+  "exports": {
+    ".": {
+      "import": "./src/leaflet.languageselector.js",
+      "default": "./src/leaflet.languageselector.js"
+    },
+    "./src/leaflet.languageselector.css": "./src/leaflet.languageselector.css"
+  },
   "files": [
-    "leaflet.languageselector.js",
-    "leaflet.languageselector.css",
+    "src/",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
