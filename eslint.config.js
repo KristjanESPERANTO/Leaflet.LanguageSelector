@@ -1,4 +1,5 @@
 import eslintPluginJs from "@eslint/js";
+import eslintPluginJsdoc from "eslint-plugin-jsdoc";
 import eslintPluginJsonc from "eslint-plugin-jsonc";
 import eslintPluginStylistic from "@stylistic/eslint-plugin";
 import { flatConfigs } from "eslint-plugin-import-x";
@@ -69,6 +70,37 @@ const config = [
       "prefer-named-capture-group": "off",
       "require-atomic-updates": "off",
       "sort-keys": "off"
+    }
+  },
+  {
+    files: ["src/**/*.js"],
+    plugins: {
+      jsdoc: eslintPluginJsdoc
+    },
+    rules: {
+      ...eslintPluginJsdoc.configs["flat/recommended"].rules,
+      // Require JSDoc for functions (not methods starting with _)
+      "jsdoc/require-jsdoc": ["warn", {
+        checkGetters: false,
+        checkSetters: false,
+        enableFixer: false,
+        exemptEmptyConstructors: true,
+        exemptEmptyFunctions: false,
+        publicOnly: false,
+        require: {
+          ArrowFunctionExpression: false,
+          ClassDeclaration: true,
+          ClassExpression: false,
+          FunctionDeclaration: true,
+          FunctionExpression: false,
+          MethodDefinition: false
+        }
+      }],
+      // Make these warnings for gradual adoption
+      "jsdoc/require-param": "warn",
+      "jsdoc/require-param-description": "warn",
+      "jsdoc/require-returns": "warn",
+      "jsdoc/require-returns-description": "warn"
     }
   },
   {
