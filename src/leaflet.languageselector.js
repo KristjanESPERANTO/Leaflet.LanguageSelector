@@ -1,10 +1,11 @@
-/* global L */
-
 /**
  * Adds a language selector to Leaflet based maps.
  * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
  * Project page: https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector
  */
+
+// Import Leaflet components (peer dependency)
+import { Control, DomEvent, DomUtil, Util } from "leaflet";
 
 const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
@@ -13,7 +14,7 @@ const buttonDisabledClassName = "leaflet-control-languageselector-button-disable
  * LanguageSelector Control for Leaflet maps.
  * Extends Leaflet's Control class.
  */
-const LanguageSelector = L.Control.extend({
+const LanguageSelector = Control.extend({
   options: {
     languages: [],
     callback: null,
@@ -27,20 +28,20 @@ const LanguageSelector = L.Control.extend({
 
   initialize(options) {
     this._buttons = [];
-    L.Util.setOptions(this, options);
-    this._container = L.DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
-    L.DomEvent.disableClickPropagation(this._container);
+    Util.setOptions(this, options);
+    this._container = DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
+    DomEvent.disableClickPropagation(this._container);
     this._createLanguageSelector(this._container);
   },
 
   _createLanguageSelector(container) {
     if (this.options.title) {
-      const titleDiv = L.DomUtil.create("div", "leaflet-languageselector-title", container);
+      const titleDiv = DomUtil.create("div", "leaflet-languageselector-title", container);
       titleDiv.textContent = this.options.title;
     }
-    const languagesDiv = L.DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
+    const languagesDiv = DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
     for (const [index, lang] of this.options.languages.entries()) {
-      const langDiv = L.DomUtil.create(
+      const langDiv = DomUtil.create(
         "div", `leaflet-languageselector-langdiv${this.options.vertical
           ? ""
           : " leaflet-languageselector-float-left"}${index > 0
@@ -52,7 +53,7 @@ const LanguageSelector = L.Control.extend({
       langDiv.setAttribute("tabindex", "0");
       langDiv.setAttribute("aria-label", label);
       if (lang.image) {
-        const img = L.DomUtil.create("img", "", langDiv);
+        const img = DomUtil.create("img", "", langDiv);
         img.src = lang.image;
         img.title = label;
         img.alt = label;
@@ -89,7 +90,7 @@ const LanguageSelector = L.Control.extend({
   },
 
   _isButton() {
-    return L.DomUtil.hasClass(this._container, buttonClassName);
+    return DomUtil.hasClass(this._container, buttonClassName);
   },
 
   _languageChanged(pEvent) {
@@ -109,12 +110,12 @@ const LanguageSelector = L.Control.extend({
         button.style.display = isCurrent ? "none" : "block";
       }
       if (isCurrent) {
-        L.DomUtil.addClass(button, "languageselector-selected");
+        DomUtil.addClass(button, "languageselector-selected");
         button.setAttribute("aria-pressed", "true");
         button.setAttribute("aria-disabled", "true");
       }
       else {
-        L.DomUtil.removeClass(button, "languageselector-selected");
+        DomUtil.removeClass(button, "languageselector-selected");
         button.setAttribute("aria-pressed", "false");
         button.setAttribute("aria-disabled", "false");
       }
@@ -128,8 +129,8 @@ const LanguageSelector = L.Control.extend({
 
   _openSelector() {
     if (this._isButton()) {
-      L.DomUtil.removeClass(this._container, buttonClassName);
-      L.DomUtil.addClass(this._container, buttonDisabledClassName);
+      DomUtil.removeClass(this._container, buttonClassName);
+      DomUtil.addClass(this._container, buttonDisabledClassName);
     }
   },
 
@@ -161,8 +162,8 @@ const LanguageSelector = L.Control.extend({
   onAdd(map) {
     this._map = map;
     if (this.options.button) {
-      L.DomUtil.addClass(this._container, buttonClassName);
-      L.DomEvent.on(this._container, "mouseup", this._openSelector, this);
+      DomUtil.addClass(this._container, buttonClassName);
+      DomEvent.on(this._container, "mouseup", this._openSelector, this);
 
       // Add listener to the map to close the button on click on the map
       this._onMapClick = () => {
@@ -172,16 +173,16 @@ const LanguageSelector = L.Control.extend({
           languageButtonDisabled.classList.add(buttonClassName);
         }
       };
-      L.DomEvent.on(this._map, "click", this._onMapClick, this);
+      DomEvent.on(this._map, "click", this._onMapClick, this);
     }
     return this._container;
   },
 
   onRemove() {
     if (this.options.button) {
-      L.DomEvent.off(this._container, "mouseup", this._openSelector, this);
+      DomEvent.off(this._container, "mouseup", this._openSelector, this);
       if (this._onMapClick && this._map) {
-        L.DomEvent.off(this._map, "click", this._onMapClick, this);
+        DomEvent.off(this._map, "click", this._onMapClick, this);
       }
     }
     // Detach event listeners from language buttons to avoid leaks
