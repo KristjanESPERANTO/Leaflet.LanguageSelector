@@ -47,6 +47,12 @@
   background-color: lightgrey;
 }
 
+/* Selected language style */
+.languageselector-selected {
+  background-color: rgb(0 0 0 / 33%);
+  pointer-events: none;
+}
+
 .leaflet-languageselector-clearfloat {
   clear: both;
 }

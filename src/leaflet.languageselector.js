@@ -109,14 +109,12 @@ const LanguageSelector = L.Control.extend({
         button.style.display = isCurrent ? "none" : "block";
       }
       if (isCurrent) {
-        button.style.backgroundColor = "#0005";
-        button.style.pointerEvents = "none";
+        L.DomUtil.addClass(button, "languageselector-selected");
         button.setAttribute("aria-pressed", "true");
         button.setAttribute("aria-disabled", "true");
       }
       else {
-        button.style.background = "";
-        button.style.pointerEvents = "";
+        L.DomUtil.removeClass(button, "languageselector-selected");
         button.setAttribute("aria-pressed", "false");
         button.setAttribute("aria-disabled", "false");
       }
