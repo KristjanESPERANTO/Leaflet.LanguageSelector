@@ -58,10 +58,7 @@ const LanguageSelector = Control.extend({
 
     // Set initial language if specified (reuse setLanguage logic)
     if (this.options.initialLanguage) {
-      // Use setTimeout to ensure DOM is ready and _buttons array is populated
-      setTimeout(() => {
-        this.setLanguage(this.options.initialLanguage);
-      }, 0);
+      this.setLanguage(this.options.initialLanguage);
     }
   },
 
