@@ -10,6 +10,8 @@ Install via npm:
 npm install @kristjan.esperanto/leaflet-language-selector
 ```
 
+**[🌍 View Live Demo](https://kristjanesperanto.github.io/Leaflet.LanguageSelector/)**
+
 ## Usage
 
 ### With a bundler (Webpack, Vite, etc.)
@@ -84,11 +86,12 @@ Using CDN for easy browser usage:
 
 ## Demo
 
-A demo page with different configurations you can find at [/demo/demo.html](/demo/demo.html).
+**[View live interactive demo →](https://kristjanesperanto.github.io/Leaflet.LanguageSelector/)**
+
+The demo showcases 16 different configurations with vertical/horizontal layouts, button/always-visible modes, with and without icons, plus programmatic `setLanguage()` examples.
 
 Maps using this library (and others) can be seen here:
 
-- <https://ahorn.lima-city.de/owm/> [(GitHub)](https://github.com/buche/leaflet-openweathermap)
 - <https://www.veggiekarte.de> [(Codeberg)](https://codeberg.org/piratenpanda/veggiekarte)
 
 ## License

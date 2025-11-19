@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/issues"
   },
-  "homepage": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme",
+  "homepage": "https://kristjanesperanto.github.io/Leaflet.LanguageSelector/",
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@eslint/markdown": "^7.5.1",
