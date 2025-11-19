@@ -8,19 +8,29 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="../src/leaflet.languageselector.css" />
     <link rel="stylesheet" href="demo.css" />
+
+    <!-- Import Maps for ES6 Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "leaflet": "https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js",
+          "leaflet-language-selector": "../src/leaflet.languageselector.js"
+        }
+      }
+    </script>
   </head>
 
   <body>
     <div id="map"></div>
     <div id="information">
-      <h2>Demo of Leaflet.LanguageSelector</h2>
+      <h2>Demo of Leaflet.LanguageSelector v3.0</h2>
       <p>This is a demo page of the leaflet plugin <i>Leaflet.LanguageSelector</i>. Here you can see 16 different versions of this language selector for Leaflet.</p>
       <p>When a language is clicked a lang parameter will be added to the URL. Doing the language change is then up to the caller.</p>
       <p>Documentation you will find on the <a href="https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector#readme">GitHub page</a>.</p>
       <h3 style="text-align: center" id="language"></h3>
     </div>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="../src/leaflet.languageselector.js"></script>
-    <script src="demo.js"></script>
+
+    <!-- ES6 Module -->
+    <script type="module" src="demo.js"></script>
   </body>
 </html>
