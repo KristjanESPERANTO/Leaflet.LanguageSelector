@@ -20,7 +20,6 @@ const LanguageSelector = Control.extend({
     callback: null,
     title: null,
     position: "topright",
-    hideSelected: false,
     vertical: true,
     initialLanguage: null,
     button: true
@@ -103,12 +102,9 @@ const LanguageSelector = Control.extend({
       ? elem.id.slice(17)
       : null;
 
-    // Hide/Show and mark selected language in a single pass
+    // Mark selected language in a single pass
     for (const button of inst._buttons) {
       const isCurrent = button.id === elem.id;
-      if (inst.options.hideSelected) {
-        button.style.display = isCurrent ? "none" : "block";
-      }
       if (isCurrent) {
         DomUtil.addClass(button, "languageselector-selected");
         button.setAttribute("aria-pressed", "true");
@@ -195,7 +191,6 @@ const LanguageSelector = Control.extend({
         }
       }
     }
-    this._container.style.display = "none";
     this._map = null;
   }
 });
@@ -228,7 +223,6 @@ const langObject = (langId, text, img) => ({
  * @param {LanguageChangeCallback} options.callback - Callback function invoked when language changes
  * @param {string} [options.title] - Optional title displayed above the language selector
  * @param {string} [options.position] - Position on the map ('topright', 'topleft', 'bottomright', 'bottomleft')
- * @param {boolean} [options.hideSelected] - Whether to hide the currently selected language
  * @param {boolean} [options.vertical] - Whether to display languages vertically (true) or horizontally (false)
  * @param {string} [options.initialLanguage] - Initial language to be selected
  * @param {boolean} [options.button] - Whether to display as a collapsible button

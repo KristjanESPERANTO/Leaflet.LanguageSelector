@@ -108,8 +108,7 @@ Some _options_ are available to configure the behaviour of the language selector
 - _callback_: Function ( **null** ) callback function with one string parameter, the id of the language
 - _title_: String ( **null** ) optional: Title of the control
 - _vertical_: Boolean ( **false** ) optional: If _true_ renders the languages vertically instead of horizontally
-- _hideSelected_: Boolean ( **false** ) optional: If _true_ hides the language currently used
-- _initialLanguage_: String ( **null** ) optional: Indicate the initial language of your page. It will be marked (when _hideSelected=false_) or hidden (when _hideSelected=true_) at the start.
+- _initialLanguage_: String ( **null** ) optional: Indicate the initial language of your page. It will be visually marked as selected.
 - _position_: String ( **'topright'** ) optional: Position of this control. Available are standard positions of Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
 
 ## How to define languages and how to define what will be displayed
@@ -126,6 +125,8 @@ If you provide an image, the image will be displayed as a symbol for the languag
 ## Stylesheet
 
 _leaflet.languageselector.css_ is used to style the components of the control. Adapt it as you like.
+
+Note: The selected language entry uses the CSS class `languageselector-selected` for visual styling.
 
 ## Language images
 
