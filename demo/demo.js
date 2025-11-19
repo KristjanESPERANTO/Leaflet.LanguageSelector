@@ -90,6 +90,9 @@ function main() {
     attribution: "&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
   }).addTo(map);
 
+  // Store all language selector controls for programmatic access
+  const controls = [];
+
   const languageArray = [
     langObject("ca", "Català"),
     langObject("de", "Deutsch"),
@@ -116,7 +119,7 @@ function main() {
   ];
 
   // Add horizontal versions as button
-  languageSelector({
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     title: "Language",
@@ -124,16 +127,16 @@ function main() {
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     title: "Language",
@@ -141,18 +144,18 @@ function main() {
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     vertical: false,
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
+  }).addTo(map));
 
   // Add vertical versions as button
-  languageSelector({
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     title: "Language",
@@ -160,16 +163,16 @@ function main() {
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     title: "Language",
@@ -177,26 +180,26 @@ function main() {
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     vertical: true,
     position: "topleft",
     initialLanguage,
     button: true
-  }).addTo(map);
+  }).addTo(map));
 
   // Add vertical versions without button
-  languageSelector({
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topright",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     title: "Language",
@@ -204,16 +207,16 @@ function main() {
     position: "topright",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     vertical: true,
     position: "topright",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     title: "Language",
@@ -221,18 +224,18 @@ function main() {
     position: "topright",
     initialLanguage,
     button: false
-  }).addTo(map);
+  }).addTo(map));
 
   // Add horizontal versions without button
-  languageSelector({
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "bottomleft",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     title: "Language",
@@ -240,16 +243,16 @@ function main() {
     position: "bottomleft",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     vertical: false,
     position: "bottomleft",
     initialLanguage,
     button: false
-  }).addTo(map);
-  languageSelector({
+  }).addTo(map));
+  controls.push(languageSelector({
     languages: languageArrayWithIcons,
     callback: changeLanguage,
     title: "Language",
@@ -257,7 +260,27 @@ function main() {
     position: "bottomleft",
     initialLanguage,
     button: false
-  }).addTo(map);
+  }).addTo(map));
+
+  // Set up programmatic language switching buttons
+  const setupLanguageButton = (buttonId, langId) => {
+    const button = document.getElementById(buttonId);
+    button.addEventListener("click", () => {
+      // Call setLanguage() on all controls
+      controls.forEach(control => control.setLanguage(langId));
+      // Update URL and display
+      changeLanguage(langId);
+    });
+  };
+
+  setupLanguageButton("btn-en", "en");
+  setupLanguageButton("btn-de", "de");
+  setupLanguageButton("btn-es", "es");
+  setupLanguageButton("btn-fr", "fr");
+  setupLanguageButton("btn-eo", "eo");
+
+  // Initialize the display with current language
+  changeLanguage(initialLanguage);
 }
 
 main();

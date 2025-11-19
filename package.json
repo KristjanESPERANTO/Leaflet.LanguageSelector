@@ -32,7 +32,7 @@
     "control"
   ],
   "peerDependencies": {
-    "leaflet": ">=2.0.0-alpha.1"
+    "leaflet": "^1.9.4 || ^2.0.0"
   },
   "bugs": {
     "url": "https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/issues"

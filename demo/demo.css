@@ -25,3 +25,23 @@ body {
   padding: 10px;
   border-radius: 10px;
 }
+
+.lang-btn {
+  margin: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.lang-btn:active {
+  background-color: #e0e0e0;
+}
