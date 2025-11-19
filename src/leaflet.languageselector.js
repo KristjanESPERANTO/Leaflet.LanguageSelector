@@ -51,43 +51,9 @@ const LanguageSelector = Control.extend({
     }
     const languagesDiv = DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
     for (const [index, lang] of this.options.languages.entries()) {
-      const langDiv = DomUtil.create(
-        "div", `leaflet-languageselector-langdiv${this.options.vertical
-          ? ""
-          : " leaflet-languageselector-float-left"}${index > 0
-          ? " leaflet-languageselector-mleft"
-          : ""}`, languagesDiv);
-      // Accessibility: make the language option operable via keyboard/screen readers
-      const label = lang.displayText ?? lang.id;
-      langDiv.setAttribute("role", "button");
-      langDiv.setAttribute("tabindex", "0");
-      langDiv.setAttribute("aria-label", label);
-      if (lang.image) {
-        const img = DomUtil.create("img", "", langDiv);
-        img.src = lang.image;
-        img.title = label;
-        img.alt = label;
-      }
-      else {
-        langDiv.textContent = label;
-      }
-      langDiv.id = `languageselector_${lang.id}`;
-      instanceMap.set(langDiv, this);
-      langDiv.addEventListener("mouseup", this._languageChanged);
-      // Keyboard support: activate on Enter/Space
-      langDiv._langselKeydown = (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          this._languageChanged({ target: langDiv });
-        }
-      };
-      langDiv.addEventListener("keydown", langDiv._langselKeydown);
-
-      // Set initial ARIA attributes
-      langDiv.setAttribute("aria-pressed", "false");
-      langDiv.setAttribute("aria-disabled", "false");
-
-      this._buttons.push(langDiv);
+      const langButton = this._createLanguageButton(lang, index);
+      languagesDiv.append(langButton);
+      this._buttons.push(langButton);
     }
 
     // Set initial language if specified (reuse setLanguage logic)
@@ -97,6 +63,61 @@ const LanguageSelector = Control.extend({
         this.setLanguage(this.options.initialLanguage);
       }, 0);
     }
+  },
+
+  /**
+   * Creates a single language button element
+   * @param {object} lang - Language object with id, displayText, and optional image
+   * @param {number} index - Index of the language in the languages array
+   * @returns {HTMLElement} The created language button element
+   * @private
+   */
+  _createLanguageButton(lang, index) {
+    // Build CSS classes
+    const classes = ["leaflet-languageselector-langdiv"];
+    if (!this.options.vertical) {
+      classes.push("leaflet-languageselector-float-left");
+    }
+    if (index > 0) {
+      classes.push("leaflet-languageselector-mleft");
+    }
+
+    const langDiv = DomUtil.create("div", classes.join(" "));
+    const label = lang.displayText ?? lang.id;
+
+    // Accessibility attributes
+    langDiv.setAttribute("role", "button");
+    langDiv.setAttribute("tabindex", "0");
+    langDiv.setAttribute("aria-label", label);
+    langDiv.setAttribute("aria-pressed", "false");
+    langDiv.setAttribute("aria-disabled", "false");
+
+    // Content: image or text
+    if (lang.image) {
+      const img = DomUtil.create("img", "", langDiv);
+      img.src = lang.image;
+      img.title = label;
+      img.alt = label;
+    }
+    else {
+      langDiv.textContent = label;
+    }
+
+    // Set ID and instance reference
+    langDiv.id = `languageselector_${lang.id}`;
+    instanceMap.set(langDiv, this);
+
+    // Event listeners
+    langDiv.addEventListener("mouseup", this._languageChanged);
+    langDiv._langselKeydown = (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        this._languageChanged({ target: langDiv });
+      }
+    };
+    langDiv.addEventListener("keydown", langDiv._langselKeydown);
+
+    return langDiv;
   },
 
   _isButton() {
