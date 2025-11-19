@@ -1,42 +1,86 @@
 # Leaflet.LanguageSelector
 
-A language selector for Leaflet based maps.
+A language selector control for Leaflet based maps.
 
 ## Installation
 
-Install via npm (recommended for modern build toolchains):
+Install via npm:
 
 ```bash
 npm install @kristjan.esperanto/leaflet-language-selector
 ```
 
-ESM import example:
+## Usage
+
+### With a bundler (Webpack, Vite, etc.)
 
 ```js
-import "leaflet";
-import "@kristjan.esperanto/leaflet-language-selector";
+import { Map, TileLayer } from "leaflet";
+import { languageSelector, langObject } from "@kristjan.esperanto/leaflet-language-selector";
 import "leaflet/dist/leaflet.css";
-import "@kristjan.esperanto/leaflet-language-selector/leaflet.languageselector.css";
+import "@kristjan.esperanto/leaflet-language-selector/style";
+
+const map = new Map("map").setView([51.505, -0.09], 13);
+new TileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(map);
+
+const control = languageSelector({
+  languages: [langObject("en", "English"), langObject("de", "Deutsch"), langObject("fr", "Français")],
+  callback: (langId) => {
+    console.log("Language changed to:", langId);
+    // Implement your language change logic here
+  }
+});
+map.addControl(control);
 ```
 
-Classic `<script>` / `<link>` usage:
+### In the browser with Import Maps (no bundler)
+
+Using CDN for easy browser usage:
 
 ```html
-<link rel="stylesheet" href="leaflet.css" />
-<link rel="stylesheet" href="leaflet.languageselector.css" />
-<script src="leaflet.js"></script>
-<script src="leaflet.languageselector.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@2.0.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.0.0-alpha.1/src/leaflet.languageselector.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "leaflet": "https://unpkg.com/leaflet@2.0.0/dist/leaflet-src.esm.js",
+          "leaflet-language-selector": "https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.0.0-alpha.1/src/leaflet.languageselector.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map" style="height: 600px;"></div>
+
+    <script type="module">
+      import { Map, TileLayer } from "leaflet";
+      import { languageSelector, langObject } from "leaflet-language-selector";
+
+      const map = new Map("map").setView([51.505, -0.09], 13);
+      new TileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(map);
+
+      const control = languageSelector({
+        languages: [langObject("en", "English"), langObject("de", "Deutsch")],
+        callback: (langId) => console.log(langId)
+      });
+      map.addControl(control);
+    </script>
+  </body>
+</html>
 ```
 
-Note: The plugin extends the global Leaflet object `L`.
+**Note:** Replace version numbers with the latest versions. You can also use `@latest` for automatic updates (not recommended for production).
 
 ## Description
 
-[Leaflet](https://leafletjs.com/) is an open-source JavaScript library for online maps. **Leaflet.LanguageSelector** is an extension for Leaflet based maps to add a language selector to the map. Languages can be represented by text or image. The words or images can be aligned horizontally or vertically. When a language is clicked a callback function is called. Doing the language change is then up to the caller.
+[Leaflet](https://leafletjs.com/) is an open-source JavaScript library for online maps. **Leaflet.LanguageSelector** is an extension for Leaflet that adds a language selector control to the map. Languages can be represented by text or images. The display can be horizontal or vertical. When a language is selected, a callback function is called with the language ID.
 
 ## Compatibility
 
-- Supported Leaflet versions: 1.9.x and 2.0.x
+- **Leaflet**: 2.0.x (ES6 Modules)
 
 ## Demo
 
@@ -51,87 +95,90 @@ Maps using this library (and others) can be seen here:
 
 This code is licensed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/ "Creative Commons Zero - Public Domain").
 
-## Using Leaflet.LanguageSelector
+## API
 
-First, you have to define the languages. Second, you have to initialize the language selector. Third, you have to provide a callback function which reacts according to the changed language. Ensure `leaflet.languageselector.js` and `leaflet.languageselector.css` are loaded (see installation section above).
+### `languageSelector(options)`
 
-## Simple Example
+Factory function to create a new language selector control.
 
-Here are the most important lines:
+**Parameters:**
 
-```html
-<head>
-  <script type="text/javascript" src="leaflet.js"></script>
-  <link rel="stylesheet" type="text/css" href="leaflet.languageselector.css" />
-  <script src="leaflet.languageselector.js"></script>
-</head>
-```
+- `options` (Object) - Configuration options
+
+**Returns:** LanguageSelector control instance
+
+### `langObject(id, displayText?, image?)`
+
+Helper function to create language objects.
+
+**Parameters:**
+
+- `id` (String) - Language identifier (e.g., 'en', 'de')
+- `displayText` (String, optional) - Display text for the language
+- `image` (String, optional) - Path to flag/icon image
+
+**Returns:** Language object
+
+**Examples:**
 
 ```js
-// callback function for language change
-function changeLanguage(selectedLanguage) {
-  var url = updateLangParameter(window.location.href, selectedLanguage);
-  // Note updateLangParameter() is not shown here. It adds or replaces the language parameter of the document URL.
-  // Look at the demo page for an implementation if you need one.
-  window.location.href = url; // make it easy, just reload the page using the changed parameter
-}
+langObject("en", "English", "./flags/en.svg"); // Image with tooltip
+langObject("en", "English"); // Text only
+langObject("en"); // ID as text
+```
 
-// initialize the map
-var osm = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-  attribution: "[insert correct attribution here!]"
+### Programmatic API
+
+#### `control.setLanguage(langId)`
+
+Programmatically change the selected language without user interaction.
+
+**Parameters:**
+
+- `langId` (String) - The language ID to switch to
+
+**Returns:** Boolean - true if language was found and set, false otherwise
+
+**Example:**
+
+```js
+const control = languageSelector({
+  languages: [langObject("en", "English"), langObject("de", "Deutsch")],
+  callback: (langId) => console.log(langId)
 });
-var map = L.map("map", { center: new L.LatLng(51.5, 10), zoom: 10, layers: [osm] });
-var baseMaps = { "OSM Standard": osm };
-L.control.layers(baseMaps).addTo(map);
+map.addControl(control);
 
-// Now the interesting stuff, the new languageselector:
-map.addControl(
-  L.languageSelector({
-    languages: [
-      L.langObject("en", "English", "en.svg"),
-      L.langObject("eo", "Esperanto", "eo.svg"),
-      L.langObject("de", "Deutsch", "de.svg"),
-      L.langObject("fr", "Français", "fr.svg"),
-      L.langObject("ru", "Русский", "ru.svg")
-    ],
-    callback: changeLanguage
-  })
-);
+// Programmatically switch to German
+control.setLanguage("de");
+
+// Integration with URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const lang = urlParams.get("lang");
+if (lang) {
+  control.setLanguage(lang);
+}
 ```
 
 ## Options
 
-Some _options_ are available to configure the behaviour of the language selector. Only two options are mandatory: **languages** - the array of languages we will use and **callback** - the callback function which will be called when the user selects a language. Here are all options, the **default value** is bold:
+Configuration options for `languageSelector()`:
 
-- _languages_: Array ( **[]** ) array of at least one Object with language information. See below for details.
-- _callback_: Function ( **null** ) callback function with one string parameter, the id of the language
-- _title_: String ( **null** ) optional: Title of the control
-- _vertical_: Boolean ( **false** ) optional: If _true_ renders the languages vertically instead of horizontally
-- _initialLanguage_: String ( **null** ) optional: Indicate the initial language of your page. It will be visually marked as selected.
-- _position_: String ( **'topright'** ) optional: Position of this control. Available are standard positions of Leaflet controls ('topright', 'topleft', 'bottomright', 'bottomleft').
+| Option          | Type     | Default      | Description                                                                         |
+| --------------- | -------- | ------------ | ----------------------------------------------------------------------------------- |
+| **languages**   | Array    | **required** | Array of language objects (use `langObject()` to create them)                       |
+| **callback**    | Function | **required** | Callback function invoked when language changes. Receives language ID as parameter. |
+| title           | String   | `null`       | Optional title displayed above the selector                                         |
+| vertical        | Boolean  | `true`       | Display languages vertically (true) or horizontally (false)                         |
+| initialLanguage | String   | `null`       | Language ID to be initially selected                                                |
+| position        | String   | `'topright'` | Control position: 'topright', 'topleft', 'bottomright', 'bottomleft'                |
+| button          | Boolean  | `true`       | Display as collapsible button (true) or always expanded (false)                     |
 
-## How to define languages and how to define what will be displayed
+## Language Images
 
-Languages are added as an array of language objects. Please create them using the function 'L.langObject(id,name,image)' as you see in the "Simple Example" code above. Only the first parameter is mandatory, it is the language id which will be passed as the only parameter of the callback function.
+Some flag images are provided in the `/images` folder - see [Image info](/images/image_info.md). For additional flags:
 
-If you provide an image, the image will be displayed as a symbol for the language. The name or id is the tooltip of the image. If you don't provide an image but a name, the name will be used. If you provide neither an image nor a name the id will be used.
+- <https://openclipart.org/>
+- <https://commons.wikimedia.org/>
+- <https://github.com/lipis/flag-icons>
 
-- _L.langObject('en','English','en.svg')_ - using image en.svg with tooltip 'English'
-- _L.langObject('en',null,'en.svg')_ - using image en.svg with tooltip 'en'
-- _L.langObject('en','English')_ - using text 'English'
-- _L.langObject('en')_ - using text 'en'
-
-## Stylesheet
-
-_leaflet.languageselector.css_ is used to style the components of the control. Adapt it as you like.
-
-Note: The selected language entry uses the CSS class `languageselector-selected` for visual styling.
-
-## Language images
-
-Only some images are provided here - look at [Image info](/images/image_info.md). If you need more, there are a lot of free ones out there in the universe. For example <https://openclipart.org/>, <http://commons.wikimedia.org/> or <http://famfamfam.com/lab/icons/flags/> ("These flag icons are available for free use for any purpose with no requirement for attribution").
-
-## Best practice for presenting languages
-
-Consider these clues about [Best practice for presenting languages](http://www.flagsarenotlanguages.com/blog/best-practice-for-presenting-languages/).
+**Best Practice:** Consider the guidance at [Flags Are Not Languages](http://www.flagsarenotlanguages.com/blog/best-practice-for-presenting-languages/) when representing languages.
