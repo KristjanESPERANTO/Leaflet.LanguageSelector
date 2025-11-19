@@ -9,6 +9,11 @@ import { Control, DomEvent, DomUtil, Util } from "leaflet";
 
 const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
+const selectedClassName = "languageselector-selected";
+
+// WeakMap to associate DOM elements with LanguageSelector instances
+// Avoids DOM pollution and prevents memory leaks
+const instanceMap = new WeakMap();
 
 /**
  * LanguageSelector Control for Leaflet maps.
@@ -28,6 +33,12 @@ const LanguageSelector = Control.extend({
   initialize(options) {
     this._buttons = [];
     Util.setOptions(this, options);
+
+    // Validate that languages array is not empty
+    if (!this.options.languages || this.options.languages.length === 0) {
+      throw new Error("LanguageSelector: languages array cannot be empty");
+    }
+
     this._container = DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
     DomEvent.disableClickPropagation(this._container);
     this._createLanguageSelector(this._container);
@@ -61,7 +72,7 @@ const LanguageSelector = Control.extend({
         langDiv.textContent = label;
       }
       langDiv.id = `languageselector_${lang.id}`;
-      langDiv._langselinstance = this;
+      instanceMap.set(langDiv, this);
       langDiv.addEventListener("mouseup", this._languageChanged);
       // Keyboard support: activate on Enter/Space
       langDiv._langselKeydown = (event) => {
@@ -94,10 +105,11 @@ const LanguageSelector = Control.extend({
 
   _languageChanged(pEvent) {
     let elem = pEvent.target;
-    if (!elem._langselinstance) {
+    let inst = instanceMap.get(elem);
+    if (!inst) {
       elem = elem.parentElement;
+      inst = instanceMap.get(elem);
     }
-    const inst = elem._langselinstance;
     const lang = elem.id.startsWith("languageselector_")
       ? elem.id.slice(17)
       : null;
@@ -106,12 +118,12 @@ const LanguageSelector = Control.extend({
     for (const button of inst._buttons) {
       const isCurrent = button.id === elem.id;
       if (isCurrent) {
-        DomUtil.addClass(button, "languageselector-selected");
+        DomUtil.addClass(button, selectedClassName);
         button.setAttribute("aria-pressed", "true");
         button.setAttribute("aria-disabled", "true");
       }
       else {
-        DomUtil.removeClass(button, "languageselector-selected");
+        DomUtil.removeClass(button, selectedClassName);
         button.setAttribute("aria-pressed", "false");
         button.setAttribute("aria-disabled", "false");
       }
@@ -173,10 +185,9 @@ const LanguageSelector = Control.extend({
 
       // Add listener to the map to close the button on click on the map
       this._onMapClick = () => {
-        const languageButtonDisabled = document.getElementsByClassName(buttonDisabledClassName)[0];
-        if (typeof languageButtonDisabled !== "undefined") {
-          languageButtonDisabled.classList.remove(buttonDisabledClassName);
-          languageButtonDisabled.classList.add(buttonClassName);
+        if (DomUtil.hasClass(this._container, buttonDisabledClassName)) {
+          DomUtil.removeClass(this._container, buttonDisabledClassName);
+          DomUtil.addClass(this._container, buttonClassName);
         }
       };
       DomEvent.on(this._map, "click", this._onMapClick, this);
@@ -199,6 +210,8 @@ const LanguageSelector = Control.extend({
           button.removeEventListener("keydown", button._langselKeydown);
           button._langselKeydown = null;
         }
+        // Clean up WeakMap entry
+        instanceMap.delete(button);
       }
     }
     this._map = null;
