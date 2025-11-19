@@ -135,9 +135,23 @@ const LanguageSelector = Control.extend({
       ? elem.id.slice(17)
       : null;
 
-    // Mark selected language in a single pass
-    for (const button of inst._buttons) {
-      const isCurrent = button.id === elem.id;
+    inst._updateButtonStates(elem.id);
+    inst._closeButtonIfOpen(pEvent);
+
+    // Callback
+    if (inst.options.callback && typeof inst.options.callback === "function") {
+      inst.options.callback(lang);
+    }
+  },
+
+  /**
+   * Updates the visual and ARIA states of all language buttons
+   * @param {string} selectedId - The ID of the selected button element
+   * @private
+   */
+  _updateButtonStates(selectedId) {
+    for (const button of this._buttons) {
+      const isCurrent = button.id === selectedId;
       if (isCurrent) {
         DomUtil.addClass(button, selectedClassName);
         button.setAttribute("aria-pressed", "true");
@@ -149,20 +163,21 @@ const LanguageSelector = Control.extend({
         button.setAttribute("aria-disabled", "false");
       }
     }
+  },
 
-    // Close button selector if it was open (extended state)
-    if (inst.options.button && !inst._isButton()) {
-      DomUtil.removeClass(inst._container, buttonDisabledClassName);
-      DomUtil.addClass(inst._container, buttonClassName);
+  /**
+   * Closes the button selector if it was in extended/open state
+   * @param {Event} pEvent - The event that triggered the language change
+   * @private
+   */
+  _closeButtonIfOpen(pEvent) {
+    if (this.options.button && !this._isButton()) {
+      DomUtil.removeClass(this._container, buttonDisabledClassName);
+      DomUtil.addClass(this._container, buttonClassName);
       // Stop event propagation to prevent _openSelector from being called again
       if (pEvent.stopPropagation) {
         pEvent.stopPropagation();
       }
-    }
-
-    // Callback
-    if (inst.options.callback && typeof inst.options.callback === "function") {
-      inst.options.callback(lang);
     }
   },
 
