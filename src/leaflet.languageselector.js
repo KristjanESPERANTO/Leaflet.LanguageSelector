@@ -106,8 +106,37 @@ const LanguageSelector = Control.extend({
     return langDiv;
   },
 
-  _isButton() {
+  /**
+   * Checks if the button selector is in closed state
+   * @returns {boolean} True if button is closed (collapsed)
+   * @private
+   */
+  _isButtonClosed() {
     return DomUtil.hasClass(this._container, buttonClassName);
+  },
+
+  /**
+   * Toggles the button selector between open and closed states
+   * @param {boolean} forceClose - If true, forces closed state regardless of current state
+   * @private
+   */
+  _toggleButtonMode(forceClose = false) {
+    if (!this.options.button) {
+      return;
+    }
+
+    const isClosed = this._isButtonClosed();
+
+    if (forceClose || !isClosed) {
+      // Close: either forced or currently open
+      DomUtil.removeClass(this._container, buttonDisabledClassName);
+      DomUtil.addClass(this._container, buttonClassName);
+    }
+    else {
+      // Open: currently closed
+      DomUtil.removeClass(this._container, buttonClassName);
+      DomUtil.addClass(this._container, buttonDisabledClassName);
+    }
   },
 
   /**
@@ -165,8 +194,13 @@ const LanguageSelector = Control.extend({
   _selectLanguage(button, event) {
     const langId = button.id.slice(17); // Remove "languageselector_" prefix
 
+    // Stop event propagation first to prevent container's toggle from firing
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    }
+
     this._updateButtonStates(button.id);
-    this._closeButtonIfOpen(event);
+    this._toggleButtonMode(true); // Force close after selection
 
     // Invoke callback
     if (this.options.callback && typeof this.options.callback === "function") {
@@ -192,29 +226,6 @@ const LanguageSelector = Control.extend({
         button.setAttribute("aria-pressed", "false");
         button.setAttribute("aria-disabled", "false");
       }
-    }
-  },
-
-  /**
-   * Closes the button selector if it was in extended/open state
-   * @param {Event} pEvent - The event that triggered the language change
-   * @private
-   */
-  _closeButtonIfOpen(pEvent) {
-    if (this.options.button && !this._isButton()) {
-      DomUtil.removeClass(this._container, buttonDisabledClassName);
-      DomUtil.addClass(this._container, buttonClassName);
-      // Stop event propagation to prevent _openSelector from being called again
-      if (pEvent.stopPropagation) {
-        pEvent.stopPropagation();
-      }
-    }
-  },
-
-  _openSelector() {
-    if (this._isButton()) {
-      DomUtil.removeClass(this._container, buttonClassName);
-      DomUtil.addClass(this._container, buttonDisabledClassName);
     }
   },
 
@@ -247,14 +258,18 @@ const LanguageSelector = Control.extend({
     this._map = map;
     if (this.options.button) {
       DomUtil.addClass(this._container, buttonClassName);
-      DomEvent.on(this._container, "mouseup", this._openSelector, this);
 
-      // Add listener to the map to close the button on click on the map
-      this._onMapClick = () => {
-        if (DomUtil.hasClass(this._container, buttonDisabledClassName)) {
-          DomUtil.removeClass(this._container, buttonDisabledClassName);
-          DomUtil.addClass(this._container, buttonClassName);
+      // Toggle handler: only toggle if not clicking on language buttons
+      this._onContainerClick = (event) => {
+        if (!this._languagesDiv.contains(event.target)) {
+          this._toggleButtonMode();
         }
+      };
+      DomEvent.on(this._container, "mouseup", this._onContainerClick, this);
+
+      // Close button when clicking on map
+      this._onMapClick = () => {
+        this._toggleButtonMode(true);
       };
       DomEvent.on(this._map, "click", this._onMapClick, this);
     }
@@ -263,7 +278,7 @@ const LanguageSelector = Control.extend({
 
   onRemove() {
     if (this.options.button) {
-      DomEvent.off(this._container, "mouseup", this._openSelector, this);
+      DomEvent.off(this._container, "mouseup", this._onContainerClick, this);
       if (this._onMapClick && this._map) {
         DomEvent.off(this._map, "click", this._onMapClick, this);
       }
