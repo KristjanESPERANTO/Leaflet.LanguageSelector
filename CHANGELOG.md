@@ -2,7 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - 2025-10-28
+## [3.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/releases/tag/v3.0.0) - 2025-11-19
+
+### Breaking Changes
+
+- **ES6 Modules only**: No global `L.*` namespace registration anymore. Must use named imports: `import { languageSelector, langObject } from '@kristjan.esperanto/leaflet-language-selector'`
+- **No IIFE/UMD build**: Only ES module format is provided. Use Import Maps for browser usage without bundler
+- **Browser requirements**: Chrome 89+, Firefox 108+, Safari 16.4+ (ES6 Modules + Import Maps support required)
+- **Removed option**: `hideSelected` option removed (was UX anti-pattern - active language should always be visible)
+- **CSS changes**: Selected language now uses `.languageselector-selected` CSS class instead of inline `font-weight` style
+- **Package structure**: Plugin files moved to `src/` directory. Import paths need updating for non-bundler usage
+
+### Added
+
+- **Programmatic API**: New `setLanguage(langId)` method for programmatic language switching
+- **CSS Custom Properties**: 9 theming variables for full visual customization (`--languageselector-*`)
+- **TypeScript support**: Full TypeScript definitions included (`index.d.ts`)
+- **JSDoc documentation**: Complete JSDoc comments for all public APIs
+- **Enhanced accessibility**:
+  - Full keyboard navigation (Enter/Space) for both container and language buttons
+  - ARIA attributes: `aria-expanded`, `aria-pressed`, `aria-disabled`, `aria-label`
+  - `role="button"` and `tabindex="0"` on closed button mode container
+- **Event delegation**: Single event listeners on container (better performance, cleaner code)
+- **Modern demo**: Interactive demo with 16 examples + programmatic `setLanguage()` buttons + URL parameter integration
+
+### Changed
+
+- **Package exports**: Modern `exports` field with style export: `import '@kristjan.esperanto/leaflet-language-selector/style'`
+- **Code modernization**:
+  - `var` → `const`/`let`
+  - Legacy for-loops → `for...of`
+  - Nullish coalescing operator (`??`)
+  - Event delegation pattern
+- **Button toggle logic**: Unified `_toggleButtonMode()` method (clearer open/close state management)
+- **Method refactoring**: Extracted `_createLanguageButton()`, `_selectLanguage()`, `_findLanguageButton()` for better separation of concerns
+- **Peer dependencies**: Updated to support both Leaflet 1.9.x and 2.x (`^1.9.4 || ^2.0.0`)
+
+### Removed
+
+- **Global namespace**: All `L.*` registrations removed
+- **IIFE build**: No more standalone browser build (use Import Maps instead)
+- **Legacy patterns**: Removed `setTimeout(..., 0)` hack, DOM property pollution
+- **UMD support**: No Universal Module Definition build anymore
+
+## [2.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/releases/tag/v2.0.0) - 2025-10-28
 
 ### Breaking changes
 
@@ -19,5 +62,3 @@ All notable changes to this project will be documented in this file.
 - Memory leak prevention: detach language button and map click listeners on control removal.
 - CSS cleanup and modernization (avoid floats, remove empty rules).
 - README example modernization (array literals) and minor docs improvements.
-
-[2.0.0]: https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/releases/tag/v2.0.0
