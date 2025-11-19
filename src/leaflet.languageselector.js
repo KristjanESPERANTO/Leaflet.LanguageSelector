@@ -11,10 +11,6 @@ const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
 const selectedClassName = "languageselector-selected";
 
-// WeakMap to associate DOM elements with LanguageSelector instances
-// Avoids DOM pollution and prevents memory leaks
-const instanceMap = new WeakMap();
-
 /**
  * LanguageSelector Control for Leaflet maps.
  * Extends Leaflet's Control class.
@@ -49,12 +45,16 @@ const LanguageSelector = Control.extend({
       const titleDiv = DomUtil.create("div", "leaflet-languageselector-title", container);
       titleDiv.textContent = this.options.title;
     }
-    const languagesDiv = DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
+    this._languagesDiv = DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
     for (const [index, lang] of this.options.languages.entries()) {
       const langButton = this._createLanguageButton(lang, index);
-      languagesDiv.append(langButton);
+      this._languagesDiv.append(langButton);
       this._buttons.push(langButton);
     }
+
+    // Event delegation: Single listener for all language buttons
+    DomEvent.on(this._languagesDiv, "mouseup", this._onLanguageClick, this);
+    DomEvent.on(this._languagesDiv, "keydown", this._onLanguageKeydown, this);
 
     // Set initial language if specified (reuse setLanguage logic)
     if (this.options.initialLanguage) {
@@ -100,19 +100,8 @@ const LanguageSelector = Control.extend({
       langDiv.textContent = label;
     }
 
-    // Set ID and instance reference
+    // Set ID for identification
     langDiv.id = `languageselector_${lang.id}`;
-    instanceMap.set(langDiv, this);
-
-    // Event listeners
-    langDiv.addEventListener("mouseup", this._languageChanged);
-    langDiv._langselKeydown = (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        this._languageChanged({ target: langDiv });
-      }
-    };
-    langDiv.addEventListener("keydown", langDiv._langselKeydown);
 
     return langDiv;
   },
@@ -121,23 +110,67 @@ const LanguageSelector = Control.extend({
     return DomUtil.hasClass(this._container, buttonClassName);
   },
 
-  _languageChanged(pEvent) {
-    let elem = pEvent.target;
-    let inst = instanceMap.get(elem);
-    if (!inst) {
-      elem = elem.parentElement;
-      inst = instanceMap.get(elem);
+  /**
+   * Handles click events on language buttons via event delegation
+   * @param {Event} event - The mouseup event
+   * @private
+   */
+  _onLanguageClick(event) {
+    const button = this._findLanguageButton(event.target);
+    if (button) {
+      this._selectLanguage(button, event);
     }
-    const lang = elem.id.startsWith("languageselector_")
-      ? elem.id.slice(17)
-      : null;
+  },
 
-    inst._updateButtonStates(elem.id);
-    inst._closeButtonIfOpen(pEvent);
+  /**
+   * Handles keyboard events on language buttons via event delegation
+   * @param {KeyboardEvent} event - The keydown event
+   * @private
+   */
+  _onLanguageKeydown(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      const button = this._findLanguageButton(event.target);
+      if (button) {
+        event.preventDefault();
+        this._selectLanguage(button, event);
+      }
+    }
+  },
 
-    // Callback
-    if (inst.options.callback && typeof inst.options.callback === "function") {
-      inst.options.callback(lang);
+  /**
+   * Finds the language button element from event target (handles img clicks)
+   * @param {HTMLElement} target - The event target
+   * @returns {HTMLElement|null} The button element or null
+   * @private
+   */
+  _findLanguageButton(target) {
+    // Direct button click
+    if (target.id && target.id.startsWith("languageselector_")) {
+      return target;
+    }
+    // Click on img inside button
+    if (target.parentElement && target.parentElement.id
+      && target.parentElement.id.startsWith("languageselector_")) {
+      return target.parentElement;
+    }
+    return null;
+  },
+
+  /**
+   * Executes language selection logic
+   * @param {HTMLElement} button - The language button element
+   * @param {Event} event - The triggering event
+   * @private
+   */
+  _selectLanguage(button, event) {
+    const langId = button.id.slice(17); // Remove "languageselector_" prefix
+
+    this._updateButtonStates(button.id);
+    this._closeButtonIfOpen(event);
+
+    // Invoke callback
+    if (this.options.callback && typeof this.options.callback === "function") {
+      this.options.callback(langId);
     }
   },
 
@@ -205,8 +238,8 @@ const LanguageSelector = Control.extend({
       return false;
     }
 
-    // Simulate a click event to reuse existing logic
-    this._languageChanged({ target: targetButton });
+    // Use internal selection logic (no event needed)
+    this._selectLanguage(targetButton, {});
     return true;
   },
 
@@ -235,17 +268,10 @@ const LanguageSelector = Control.extend({
         DomEvent.off(this._map, "click", this._onMapClick, this);
       }
     }
-    // Detach event listeners from language buttons to avoid leaks
-    if (Array.isArray(this._buttons)) {
-      for (const button of this._buttons) {
-        button.removeEventListener("mouseup", this._languageChanged);
-        if (button._langselKeydown) {
-          button.removeEventListener("keydown", button._langselKeydown);
-          button._langselKeydown = null;
-        }
-        // Clean up WeakMap entry
-        instanceMap.delete(button);
-      }
+    // Remove delegated event listeners
+    if (this._languagesDiv) {
+      DomEvent.off(this._languagesDiv, "mouseup", this._onLanguageClick, this);
+      DomEvent.off(this._languagesDiv, "keydown", this._onLanguageKeydown, this);
     }
     this._map = null;
   }
