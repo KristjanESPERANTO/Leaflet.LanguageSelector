@@ -117,6 +117,16 @@ const LanguageSelector = Control.extend({
       }
     }
 
+    // Close button selector if it was open (extended state)
+    if (inst.options.button && !inst._isButton()) {
+      DomUtil.removeClass(inst._container, buttonDisabledClassName);
+      DomUtil.addClass(inst._container, buttonClassName);
+      // Stop event propagation to prevent _openSelector from being called again
+      if (pEvent.stopPropagation) {
+        pEvent.stopPropagation();
+      }
+    }
+
     // Callback
     if (inst.options.callback && typeof inst.options.callback === "function") {
       inst.options.callback(lang);
