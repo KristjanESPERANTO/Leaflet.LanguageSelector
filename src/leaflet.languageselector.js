@@ -131,11 +131,13 @@ const LanguageSelector = Control.extend({
       // Close: either forced or currently open
       DomUtil.removeClass(this._container, buttonDisabledClassName);
       DomUtil.addClass(this._container, buttonClassName);
+      this._container.setAttribute("aria-expanded", "false");
     }
     else {
       // Open: currently closed
       DomUtil.removeClass(this._container, buttonClassName);
       DomUtil.addClass(this._container, buttonDisabledClassName);
+      this._container.setAttribute("aria-expanded", "true");
     }
   },
 
@@ -259,6 +261,12 @@ const LanguageSelector = Control.extend({
     if (this.options.button) {
       DomUtil.addClass(this._container, buttonClassName);
 
+      // Make container keyboard accessible
+      this._container.setAttribute("tabindex", "0");
+      this._container.setAttribute("role", "button");
+      this._container.setAttribute("aria-expanded", "false");
+      this._container.setAttribute("aria-label", "Language selector");
+
       // Toggle handler: only toggle if not clicking on language buttons
       this._onContainerClick = (event) => {
         if (!this._languagesDiv.contains(event.target)) {
@@ -266,6 +274,15 @@ const LanguageSelector = Control.extend({
         }
       };
       DomEvent.on(this._container, "mouseup", this._onContainerClick, this);
+
+      // Keyboard handler for container
+      this._onContainerKeydown = (event) => {
+        if (event.target === this._container && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          this._toggleButtonMode();
+        }
+      };
+      DomEvent.on(this._container, "keydown", this._onContainerKeydown, this);
 
       // Close button when clicking on map
       this._onMapClick = () => {
@@ -279,6 +296,7 @@ const LanguageSelector = Control.extend({
   onRemove() {
     if (this.options.button) {
       DomEvent.off(this._container, "mouseup", this._onContainerClick, this);
+      DomEvent.off(this._container, "keydown", this._onContainerKeydown, this);
       if (this._onMapClick && this._map) {
         DomEvent.off(this._map, "click", this._onMapClick, this);
       }
