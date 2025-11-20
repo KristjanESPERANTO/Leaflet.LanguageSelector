@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.1](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.2.0...v3.2.1) - 2025-11-20
+
+### Fixed
+
+- fix: change postinstall script to prepare in package.json
+
 ## [3.2.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.1.0...v3.2.0) - 2025-11-20
 
 ### Changed
