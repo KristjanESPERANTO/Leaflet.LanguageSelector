@@ -1,0 +1,42 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "buche",
+    "Català",
+    "Cdefs",
+    "clearfloat",
+    "Clipart",
+    "codeberg",
+    "Cpath",
+    "Csvg",
+    "Deutsch",
+    "Esperanto",
+    "Español",
+    "evenodd",
+    "Français",
+    "importmap",
+    "Inkscape",
+    "Italiano",
+    "jsdoc",
+    "Kristjan",
+    "langdiv",
+    "languagesdiv",
+    "languageselector",
+    "sublicensable",
+    "SVGOMG",
+    "unpkg",
+    "veggiekarte",
+    "Русский"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "package-lock.json",
+    ".git",
+    "dist",
+    "build",
+    "*.min.js",
+    "*.min.css",
+    "*.svg"
+  ]
+}
