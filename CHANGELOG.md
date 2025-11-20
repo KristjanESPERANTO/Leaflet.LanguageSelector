@@ -2,7 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [3.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/releases/tag/v3.0.0) - 2025-11-19
+## [3.1.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.0.0...v3.1.0) - 2025-11-20
+
+### Added
+
+- feat: implement CSS-based icon system with Base64 Data URLs
+- docs: add references section to demo/index.html
+
+### Changed
+
+- refactor: use native classList API for Leaflet 2.0 compatibility
+
+## [3.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v2.0.0...v3.0.0) - 2025-11-19
 
 ### Breaking Changes
 
@@ -45,7 +56,7 @@ All notable changes to this project will be documented in this file.
 - **Legacy patterns**: Removed `setTimeout(..., 0)` hack, DOM property pollution
 - **UMD support**: No Universal Module Definition build anymore
 
-## [2.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/releases/tag/v2.0.0) - 2025-10-28
+## [2.0.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v1.2.5...v2.0.0) - 2025-10-28
 
 ### Breaking changes
 
