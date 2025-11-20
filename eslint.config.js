@@ -1,3 +1,4 @@
+import css from "@eslint/css";
 import { defineConfig, globalIgnores } from "eslint/config";
 import { flatConfigs as importX } from "eslint-plugin-import-x";
 import globals from "globals";
@@ -13,6 +14,7 @@ export default defineConfig([
     "rollup.config.js",
     "third-party/"
   ]),
+  { files: ["**/*.css"], languageOptions: { tolerant: true }, plugins: { css }, language: "css/css", extends: ["css/recommended"] },
   {
     files: ["**/*.js"],
     languageOptions: {

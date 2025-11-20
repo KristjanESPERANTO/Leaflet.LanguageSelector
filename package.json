@@ -43,6 +43,7 @@
   },
   "homepage": "https://kristjanesperanto.github.io/Leaflet.LanguageSelector/",
   "devDependencies": {
+    "@eslint/css": "^0.14.1",
     "@eslint/js": "^9.39.1",
     "@eslint/markdown": "^7.5.1",
     "@stylistic/eslint-plugin": "^5.6.1",
@@ -51,18 +52,17 @@
     "eslint-plugin-jsdoc": "^61.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "prettier": "^3.6.2",
-    "stylelint": "^16.25.0",
-    "stylelint-config-standard": "^39.0.1",
-    "stylelint-prettier": "^5.0.3"
+    "prettier": "^3.6.2"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.css": "stylelint --fix"
+    "*": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
   },
   "scripts": {
-    "lint": "eslint && stylelint **/*.css && prettier --check .",
-    "lint:fix": "eslint --fix && stylelint --fix **/*.css && prettier --write .",
+    "lint": "eslint && prettier --check .",
+    "lint:fix": "eslint --fix && prettier --write .",
     "test": "npm run lint",
     "prepare": "husky"
   },
