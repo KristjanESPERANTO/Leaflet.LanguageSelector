@@ -107,7 +107,7 @@ function main() {
     langObject("ru", "Русский")
   ];
 
-  // Add horizontal versions as button
+  // Horizontal + button + text+flags + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -115,16 +115,20 @@ function main() {
     vertical: false,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: true
   }).addTo(map));
+  // Horizontal + button + text+flags + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: true
   }).addTo(map));
+  // Horizontal + button + flags only + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -132,18 +136,21 @@ function main() {
     vertical: false,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: false
   }).addTo(map));
+  // Horizontal + button + flags only + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: false
   }).addTo(map));
 
-  // Add vertical versions as button
+  // Vertical + button + text+flags + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -151,16 +158,20 @@ function main() {
     vertical: true,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: true
   }).addTo(map));
+  // Vertical + button + text+flags + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: true
   }).addTo(map));
+  // Vertical + button + flags only + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -168,26 +179,21 @@ function main() {
     vertical: true,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: false
   }).addTo(map));
+  // Vertical + button + flags only + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topleft",
     initialLanguage,
-    button: true
+    button: true,
+    showText: false
   }).addTo(map));
 
-  // Add vertical versions without button
-  controls.push(languageSelector({
-    languages: languageArray,
-    callback: changeLanguage,
-    vertical: true,
-    position: "topright",
-    initialLanguage,
-    button: false
-  }).addTo(map));
+  // Vertical + no button + text+flags + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -195,16 +201,20 @@ function main() {
     vertical: true,
     position: "topright",
     initialLanguage,
-    button: false
+    button: false,
+    showText: true
   }).addTo(map));
+  // Vertical + no button + text+flags + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topright",
     initialLanguage,
-    button: false
+    button: false,
+    showText: true
   }).addTo(map));
+  // Vertical + no button + flags only + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -212,18 +222,21 @@ function main() {
     vertical: true,
     position: "topright",
     initialLanguage,
-    button: false
+    button: false,
+    showText: false
+  }).addTo(map));
+  // Vertical + no button + flags only + no title
+  controls.push(languageSelector({
+    languages: languageArray,
+    callback: changeLanguage,
+    vertical: true,
+    position: "topright",
+    initialLanguage,
+    button: false,
+    showText: false
   }).addTo(map));
 
-  // Add horizontal versions without button
-  controls.push(languageSelector({
-    languages: languageArray,
-    callback: changeLanguage,
-    vertical: false,
-    position: "bottomleft",
-    initialLanguage,
-    button: false
-  }).addTo(map));
+  // Horizontal + no button + text+flags + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -231,16 +244,20 @@ function main() {
     vertical: false,
     position: "bottomleft",
     initialLanguage,
-    button: false
+    button: false,
+    showText: true
   }).addTo(map));
+  // Horizontal + no button + text+flags + no title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "bottomleft",
     initialLanguage,
-    button: false
+    button: false,
+    showText: true
   }).addTo(map));
+  // Horizontal + no button + flags only + title
   controls.push(languageSelector({
     languages: languageArray,
     callback: changeLanguage,
@@ -248,7 +265,18 @@ function main() {
     vertical: false,
     position: "bottomleft",
     initialLanguage,
-    button: false
+    button: false,
+    showText: false
+  }).addTo(map));
+  // Horizontal + no button + flags only + no title
+  controls.push(languageSelector({
+    languages: languageArray,
+    callback: changeLanguage,
+    vertical: false,
+    position: "bottomleft",
+    initialLanguage,
+    button: false,
+    showText: false
   }).addTo(map));
 
   // Set up programmatic language switching buttons

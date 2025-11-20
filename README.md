@@ -109,15 +109,15 @@ Helper function to create language objects.
 **Parameters:**
 
 - `id` (String) - Language identifier (e.g., 'en', 'de')
-- `displayText` (String, optional) - Display text for the language
+- `displayText` (String) - Display text for the language
 
 **Returns:** Language object
 
 **Example:**
 
 ```js
-langObject("en", "English"); // With text
-langObject("en"); // ID as text
+langObject("en", "English");
+langObject("de", "Deutsch");
 ```
 
 ### `control.setLanguage(langId)`
@@ -151,6 +151,7 @@ Configuration options for `languageSelector()`:
 | initialLanguage | String   | `null`       | Language ID to be initially selected                                                |
 | position        | String   | `'topright'` | Control position: 'topright', 'topleft', 'bottomright', 'bottomleft'                |
 | button          | Boolean  | `true`       | Display as collapsible button (true) or always expanded (false)                     |
+| showText        | Boolean  | `false`      | Show language text next to icons (true) or icons only with tooltip (false)          |
 
 ## Styling
 
@@ -173,6 +174,12 @@ import "@kristjan.esperanto/leaflet-language-selector/flags";
 ```html
 <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.1/src/leaflet.languageselector-flags.css" />
 ```
+
+**Display Modes:**
+
+- **Flag Only (default):** Set `showText: false` - Shows only flag icons with tooltips
+- **Text + Flag:** Set `showText: true` - Shows language text next to flag icons
+- **Text Only:** Don't import the flags CSS, set `showText: true`
 
 ### Custom Icons
 

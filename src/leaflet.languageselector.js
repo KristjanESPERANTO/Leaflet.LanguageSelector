@@ -23,7 +23,8 @@ const LanguageSelector = Control.extend({
     position: "topright",
     vertical: true,
     initialLanguage: null,
-    button: true
+    button: true,
+    showText: false
   },
 
   initialize(options) {
@@ -95,8 +96,15 @@ const LanguageSelector = Control.extend({
     langDiv.setAttribute("aria-pressed", "false");
     langDiv.setAttribute("aria-disabled", "false");
 
-    // Set text content (icon will be added via CSS ::before if flags CSS is imported)
-    langDiv.textContent = label;
+    // Set text content and tooltip based on showText option
+    // Icon will be added via CSS ::before if flags CSS is imported
+    if (this.options.showText) {
+      langDiv.textContent = label;
+    }
+    else {
+      langDiv.textContent = "";
+      langDiv.setAttribute("title", label);
+    }
 
     // Set ID for identification
     langDiv.id = `languageselector_${lang.id}`;
@@ -316,7 +324,7 @@ const LanguageSelector = Control.extend({
 });
 
 /**
- * Helper function to create a language object for the language selector.
+ * Create a language object for use with the language selector.
  * @param {string} langId - The language identifier (e.g., 'en', 'de')
  * @param {string} text - The display text for the language
  * @returns {object} Language object with id and displayText
