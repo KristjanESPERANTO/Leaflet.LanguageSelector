@@ -112,7 +112,7 @@ const LanguageSelector = Control.extend({
    * @private
    */
   _isButtonClosed() {
-    return DomUtil.hasClass(this._container, buttonClassName);
+    return this._container.classList.contains(buttonClassName);
   },
 
   /**
@@ -129,14 +129,14 @@ const LanguageSelector = Control.extend({
 
     if (forceClose || !isClosed) {
       // Close: either forced or currently open
-      DomUtil.removeClass(this._container, buttonDisabledClassName);
-      DomUtil.addClass(this._container, buttonClassName);
+      this._container.classList.remove(buttonDisabledClassName);
+      this._container.classList.add(buttonClassName);
       this._container.setAttribute("aria-expanded", "false");
     }
     else {
       // Open: currently closed
-      DomUtil.removeClass(this._container, buttonClassName);
-      DomUtil.addClass(this._container, buttonDisabledClassName);
+      this._container.classList.remove(buttonClassName);
+      this._container.classList.add(buttonDisabledClassName);
       this._container.setAttribute("aria-expanded", "true");
     }
   },
@@ -219,12 +219,12 @@ const LanguageSelector = Control.extend({
     for (const button of this._buttons) {
       const isCurrent = button.id === selectedId;
       if (isCurrent) {
-        DomUtil.addClass(button, selectedClassName);
+        button.classList.add(selectedClassName);
         button.setAttribute("aria-pressed", "true");
         button.setAttribute("aria-disabled", "true");
       }
       else {
-        DomUtil.removeClass(button, selectedClassName);
+        button.classList.remove(selectedClassName);
         button.setAttribute("aria-pressed", "false");
         button.setAttribute("aria-disabled", "false");
       }
@@ -259,7 +259,7 @@ const LanguageSelector = Control.extend({
   onAdd(map) {
     this._map = map;
     if (this.options.button) {
-      DomUtil.addClass(this._container, buttonClassName);
+      this._container.classList.add(buttonClassName);
 
       // Make container keyboard accessible
       this._container.setAttribute("tabindex", "0");
