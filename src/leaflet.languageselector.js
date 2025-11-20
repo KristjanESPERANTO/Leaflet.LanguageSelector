@@ -5,7 +5,7 @@
  */
 
 // Import Leaflet components (peer dependency)
-import { Control, DomEvent, DomUtil, Util } from "leaflet";
+import { Control, DomUtil, Util } from "leaflet";
 
 const buttonClassName = "leaflet-control-languageselector-button";
 const buttonDisabledClassName = "leaflet-control-languageselector-button-disabled";
@@ -36,8 +36,19 @@ const LanguageSelector = Control.extend({
     }
 
     this._container = DomUtil.create("div", "leaflet-control-layers leaflet-languageselector-control");
-    DomEvent.disableClickPropagation(this._container);
+    this._disableMapEvents(this._container);
     this._createLanguageSelector(this._container);
+  },
+
+  /**
+   * Prevents events from propagating to the map
+   * @param {HTMLElement} element - The element to disable event propagation for
+   * @private
+   */
+  _disableMapEvents(element) {
+    ["click", "dblclick", "mousedown", "touchstart", "contextmenu"].forEach(event =>
+      element.addEventListener(event, e => e.stopPropagation())
+    );
   },
 
   _createLanguageSelector(container) {
@@ -51,10 +62,6 @@ const LanguageSelector = Control.extend({
       this._languagesDiv.append(langButton);
       this._buttons.push(langButton);
     }
-
-    // Event delegation: Single listener for all language buttons
-    DomEvent.on(this._languagesDiv, "mouseup", this._onLanguageClick, this);
-    DomEvent.on(this._languagesDiv, "keydown", this._onLanguageKeydown, this);
 
     // Set initial language if specified (reuse setLanguage logic)
     if (this.options.initialLanguage) {
@@ -268,7 +275,7 @@ const LanguageSelector = Control.extend({
           this._toggleButtonMode();
         }
       };
-      DomEvent.on(this._container, "mouseup", this._onContainerClick, this);
+      this._container.addEventListener("mouseup", this._onContainerClick);
 
       // Keyboard handler for container
       this._onContainerKeydown = (event) => {
@@ -277,29 +284,36 @@ const LanguageSelector = Control.extend({
           this._toggleButtonMode();
         }
       };
-      DomEvent.on(this._container, "keydown", this._onContainerKeydown, this);
+      this._container.addEventListener("keydown", this._onContainerKeydown);
 
       // Close button when clicking on map
       this._onMapClick = () => {
         this._toggleButtonMode(true);
       };
-      DomEvent.on(this._map, "click", this._onMapClick, this);
+      this._map.on("click", this._onMapClick);
     }
+
+    // Event delegation for language buttons
+    this._boundOnLanguageClick = this._onLanguageClick.bind(this);
+    this._boundOnLanguageKeydown = this._onLanguageKeydown.bind(this);
+    this._languagesDiv.addEventListener("mouseup", this._boundOnLanguageClick);
+    this._languagesDiv.addEventListener("keydown", this._boundOnLanguageKeydown);
+
     return this._container;
   },
 
   onRemove() {
     if (this.options.button) {
-      DomEvent.off(this._container, "mouseup", this._onContainerClick, this);
-      DomEvent.off(this._container, "keydown", this._onContainerKeydown, this);
+      this._container.removeEventListener("mouseup", this._onContainerClick);
+      this._container.removeEventListener("keydown", this._onContainerKeydown);
       if (this._onMapClick && this._map) {
-        DomEvent.off(this._map, "click", this._onMapClick, this);
+        this._map.off("click", this._onMapClick);
       }
     }
     // Remove delegated event listeners
     if (this._languagesDiv) {
-      DomEvent.off(this._languagesDiv, "mouseup", this._onLanguageClick, this);
-      DomEvent.off(this._languagesDiv, "keydown", this._onLanguageKeydown, this);
+      this._languagesDiv.removeEventListener("mouseup", this._boundOnLanguageClick);
+      this._languagesDiv.removeEventListener("keydown", this._boundOnLanguageKeydown);
     }
     this._map = null;
   }
