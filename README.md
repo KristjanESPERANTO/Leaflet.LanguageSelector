@@ -80,6 +80,8 @@ Using CDN for easy browser usage:
 
 [Leaflet](https://leafletjs.com/) is an open-source JavaScript library for online maps. **Leaflet.LanguageSelector** is an extension for Leaflet that adds a language selector control to the map. Languages can be represented by text or images. The display can be horizontal or vertical. When a language is selected, a callback function is called with the language ID.
 
+**Note:** This is a fork of the original [Leaflet.LanguageSelector](https://github.com/buche/Leaflet.LanguageSelector) by [buche](https://github.com/buche). Many thanks to the original author for creating this useful plugin!
+
 ## Compatibility
 
 - **Leaflet**: 2.0.x (ES6 Modules)
