@@ -66,7 +66,7 @@
     "lint:fix": "eslint --fix && prettier --write .",
     "spellcheck": "cspell --no-progress .",
     "test": "npm run lint",
-    "postinstall": "simple-git-hooks"
+    "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
