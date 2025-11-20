@@ -23,6 +23,9 @@
     "url": "git+https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector.git"
   },
   "author": "buche",
+  "maintainers": [
+    "Kristjan ESPERANTO <11781960+KristjanESPERANTO@users.noreply.github.com>"
+  ],
   "license": "CC0-1.0",
   "keywords": [
     "leaflet",
