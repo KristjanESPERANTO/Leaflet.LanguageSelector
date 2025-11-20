@@ -163,11 +163,13 @@ The base styles (`leaflet.languageselector.css`) are **required** and provide th
 To display flag icons automatically based on language codes, import the flags stylesheet:
 
 **With bundler:**
+
 ```js
 import "@kristjan.esperanto/leaflet-language-selector/flags";
 ```
 
 **With CDN:**
+
 ```html
 <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.0/src/leaflet.languageselector-flags.css" />
 ```

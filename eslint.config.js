@@ -14,7 +14,7 @@ export default defineConfig([
     "rollup.config.js",
     "third-party/"
   ]),
-  { files: ["**/*.css"], languageOptions: { tolerant: true }, plugins: { css }, language: "css/css", extends: ["css/recommended"] },
+  { files: ["**/*.css"], languageOptions: { tolerant: true }, plugins: { css }, language: "css/css", extends: ["css/recommended"], rules: { "css/use-baseline": ["error", { available: "newly" }] } },
   {
     files: ["**/*.js"],
     languageOptions: {

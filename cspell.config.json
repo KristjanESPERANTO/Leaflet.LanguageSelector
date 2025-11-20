@@ -29,14 +29,5 @@
     "veggiekarte",
     "Русский"
   ],
-  "ignorePaths": [
-    "node_modules",
-    "package-lock.json",
-    ".git",
-    "dist",
-    "build",
-    "*.min.js",
-    "*.min.css",
-    "*.svg"
-  ]
+  "ignorePaths": ["node_modules", "package-lock.json", ".git", "dist", "build", "*.min.js", "*.min.css", "*.svg"]
 }
