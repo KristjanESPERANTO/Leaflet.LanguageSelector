@@ -56,14 +56,14 @@ Using CDN for easy browser usage:
 <html>
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-alpha.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.1/src/leaflet.languageselector.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.3.0/src/leaflet.languageselector.css" />
     <!-- Optional: Include flag icons -->
-    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.1/src/leaflet.languageselector-flags.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.3.0/src/leaflet.languageselector-flags.css" />
     <script type="importmap">
       {
         "imports": {
           "leaflet": "https://cdn.jsdelivr.net/npm/leaflet@2.0.0-alpha.1/dist/leaflet-src.js",
-          "leaflet-language-selector": "https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.1/src/leaflet.languageselector.js"
+          "leaflet-language-selector": "https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.3.0/src/leaflet.languageselector.js"
         }
       }
     </script>
@@ -172,7 +172,7 @@ import "@kristjan.esperanto/leaflet-language-selector/flags";
 **With CDN:**
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.1/src/leaflet.languageselector-flags.css" />
+<link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.3.0/src/leaflet.languageselector-flags.css" />
 ```
 
 **Display Modes:**

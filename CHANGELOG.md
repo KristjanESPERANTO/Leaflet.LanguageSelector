@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.3.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.2.1...v3.3.0) - 2025-11-20
+
+### Added
+
+- feat: add `showText` option to toggle display of language text labels
+  - when disabled, only flags/icons are shown with tooltips
+  - when enabled, both flags/icons and text labels are displayed
+
 ## [3.2.1](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.2.0...v3.2.1) - 2025-11-20
 
 ### Fixed
