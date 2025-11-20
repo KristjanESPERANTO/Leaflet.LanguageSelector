@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.1.0...v3.2.0) - 2025-11-20
+
+### Changed
+
+- refactor: modernize event handling
+- refactor: modernize spacing with CSS flexbox and gap
+
+### Chore
+
+- chore: add maintainer information to package.json
+- chore: replace `stylelint` with `@eslint/css`
+- docs: review and reorganize README
+- docs: update README to include flag icons for language selector
+
+### Demo
+
+- fix(demo): update deployment branch from v3 to main
+- refactor(demo): upgrade demo to Leaflet 2.0.0-alpha.1
+
 ## [3.1.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.0.0...v3.1.0) - 2025-11-20
 
 ### Added
