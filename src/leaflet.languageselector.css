@@ -36,6 +36,19 @@
   display: none;
 }
 
+/* Language container with gap between items */
+.leaflet-languageselector-languagesdiv {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.leaflet-languageselector-languagesdiv:has(.leaflet-languageselector-float-left) {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
 /* Flag style */
 .leaflet-languageselector-langdiv > img {
   border-style: solid;

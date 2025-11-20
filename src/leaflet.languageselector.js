@@ -57,8 +57,8 @@ const LanguageSelector = Control.extend({
       titleDiv.textContent = this.options.title;
     }
     this._languagesDiv = DomUtil.create("div", "leaflet-languageselector-languagesdiv", container);
-    for (const [index, lang] of this.options.languages.entries()) {
-      const langButton = this._createLanguageButton(lang, index);
+    for (const lang of this.options.languages) {
+      const langButton = this._createLanguageButton(lang);
       this._languagesDiv.append(langButton);
       this._buttons.push(langButton);
     }
@@ -72,18 +72,14 @@ const LanguageSelector = Control.extend({
   /**
    * Creates a single language button element
    * @param {object} lang - Language object with id, displayText, and optional image
-   * @param {number} index - Index of the language in the languages array
    * @returns {HTMLElement} The created language button element
    * @private
    */
-  _createLanguageButton(lang, index) {
+  _createLanguageButton(lang) {
     // Build CSS classes
     const classes = ["leaflet-languageselector-langdiv"];
     if (!this.options.vertical) {
       classes.push("leaflet-languageselector-float-left");
-    }
-    if (index > 0) {
-      classes.push("leaflet-languageselector-mleft");
     }
 
     const langDiv = DomUtil.create("div", classes.join(" "));
