@@ -31,6 +31,8 @@ import { Map, TileLayer } from "leaflet";
 import { languageSelector, langObject } from "@kristjan.esperanto/leaflet-language-selector";
 import "leaflet/dist/leaflet.css";
 import "@kristjan.esperanto/leaflet-language-selector/style";
+// Optional: Import flag icons
+import "@kristjan.esperanto/leaflet-language-selector/flags";
 
 const map = new Map("map").setView([51.505, -0.09], 13);
 new TileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(map);
@@ -55,6 +57,8 @@ Using CDN for easy browser usage:
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-alpha.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.0/src/leaflet.languageselector.css" />
+    <!-- Optional: Include flag icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.0/src/leaflet.languageselector-flags.css" />
     <script type="importmap">
       {
         "imports": {
@@ -148,9 +152,29 @@ Configuration options for `languageSelector()`:
 | position        | String   | `'topright'` | Control position: 'topright', 'topleft', 'bottomright', 'bottomleft'                |
 | button          | Boolean  | `true`       | Display as collapsible button (true) or always expanded (false)                     |
 
-## Language Images
+## Styling
 
-Some flag images are provided in the `/images` folder - see [Image info](/images/image_info.md). For additional flags:
+### Basic Styles
+
+The base styles (`leaflet.languageselector.css`) are **required** and provide the core control appearance.
+
+### Flag Icons (Optional)
+
+To display flag icons automatically based on language codes, import the flags stylesheet:
+
+**With bundler:**
+```js
+import "@kristjan.esperanto/leaflet-language-selector/flags";
+```
+
+**With CDN:**
+```html
+<link rel="stylesheet" href="https://unpkg.com/@kristjan.esperanto/leaflet-language-selector@3.2.0/src/leaflet.languageselector-flags.css" />
+```
+
+### Custom Icons
+
+You can also provide custom flag images in the `/images` folder - see [Image info](/images/image_info.md). For additional flags:
 
 - <https://openclipart.org/>
 - <https://commons.wikimedia.org/>
