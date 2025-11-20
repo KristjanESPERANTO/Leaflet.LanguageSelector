@@ -82,6 +82,9 @@ const LanguageSelector = Control.extend({
     const langDiv = DomUtil.create("div", classes.join(" "));
     const label = lang.displayText ?? lang.id;
 
+    // Set data-lang attribute for CSS-based icons (from leaflet.languageselector-flags.css)
+    langDiv.setAttribute("data-lang", lang.id);
+
     // Accessibility attributes
     langDiv.setAttribute("role", "button");
     langDiv.setAttribute("tabindex", "0");
@@ -89,16 +92,8 @@ const LanguageSelector = Control.extend({
     langDiv.setAttribute("aria-pressed", "false");
     langDiv.setAttribute("aria-disabled", "false");
 
-    // Content: image or text
-    if (lang.image) {
-      const img = DomUtil.create("img", "", langDiv);
-      img.src = lang.image;
-      img.title = label;
-      img.alt = label;
-    }
-    else {
-      langDiv.textContent = label;
-    }
+    // Set text content (icon will be added via CSS ::before if flags CSS is imported)
+    langDiv.textContent = label;
 
     // Set ID for identification
     langDiv.id = `languageselector_${lang.id}`;
@@ -311,18 +306,18 @@ const LanguageSelector = Control.extend({
 });
 
 /**
- * Creates a language object for use with the language selector.
+ * Helper function to create a language object for the language selector.
  * @param {string} langId - The language identifier (e.g., 'en', 'de')
  * @param {string} text - The display text for the language
- * @param {string} [img] - Optional path to a flag/icon image
- * @returns {object} Language object with id, displayText, and optional image
+ * @returns {object} Language object with id and displayText
+ * Icons can be added via CSS using [data-lang] attribute selector.
+ * Import 'leaflet.languageselector-flags.css' for built-in flag icons.
  * @example
- * const lang = langObject('en', 'English', './flags/en.svg');
+ * const lang = langObject('en', 'English');
  */
-const langObject = (langId, text, img) => ({
+const langObject = (langId, text) => ({
   displayText: text,
-  id: langId,
-  image: img
+  id: langId
 });
 
 /**

@@ -1,0 +1,101 @@
+/**
+ * Language flag icons as inline SVG data URLs
+ * License: CC0 (Creative Commons Zero), see https://creativecommons.org/publicdomain/zero/1.0/
+ * Source: https://openclipart.org/ (edited to 24x16px, optimized with SVGOMG)
+ *
+ * Usage: Import this file to get built-in flag icons for supported languages.
+ * If you don't import this file, you can provide custom icon URLs via langObject().
+ */
+
+:root {
+  /* ca.svg - Flag of Catalonia */
+  --languageselector-flag-ca: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+CiAgPHBhdGggZmlsbD0iI2ZjZGQwOSIgZD0iTTAgMGgyNHYxNkgweiIvPgogIDxwYXRoIGZpbGw9IiNkYTEyMWEiIGQ9Ik0wIDEuNzc4aDI0djEuNzc4SDB6TTAgNS4zMzNoMjR2MS43NzhIMHpNMCA4Ljg4OWgyNHYxLjc3OEgwek0wIDEyLjQ0NGgyNHYxLjc3OEgweiIvPgo8L3N2Zz4K");
+
+  /* de.svg - Flag of Germany */
+  --languageselector-flag-de: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PGRlZnMvPjxwYXRoIGQ9Ik0wIDBoMjR2MTZIMHoiLz48cGF0aCBmaWxsPSIjZDAwIiBkPSJNMCA1LjNoMjRWMTZIMHoiLz48cGF0aCBmaWxsPSIjZmZjZTAwIiBkPSJNMCAxMC43aDI0VjE2SDB6Ii8+PC9zdmc+Cg==");
+
+  /* en.svg - Flag of United Kingdom */
+  --languageselector-flag-en: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmV9LmNscy0ye2ZpbGw6IzAwMjQ3ZH0uY2xzLTN7ZmlsbDojY2YxNDJifS5jbHMtNHtmaWxsOiNmZmZ9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTUuNCAxMC42TDAgMTQuMnYtMy42eiIgY2xhc3M9ImNscy0yIi8+PHBhdGggZD0iTTEuNyAxNkgwbDguMi01LjRoMS43eiIgY2xhc3M9ImNscy0xIi8+PHBhdGggZD0iTTEwIDExLjFWMTZIMi42ek0wIDEuOGw1LjIgMy41SDB6IiBjbGFzcz0iY2xzLTIiLz48cGF0aCBkPSJNMCAxLjJWMGw4IDUuMkg2LjF6IiBjbGFzcz0iY2xzLTEiLz48cGF0aCBkPSJNMTAgMHY0LjlMMi42IDB6bTExLjQgMTZIMTR2LTQuOXptMi42LTUuNHYzLjZsLTUuNC0zLjZ6IiBjbGFzcz0iY2xzLTIiLz48cGF0aCBkPSJNMjQgMTQuOVYxNmwtOC4yLTUuNGgxLjd6IiBjbGFzcz0iY2xzLTEiLz48cGF0aCBkPSJNMTMuMiA2LjRWMGgtMi4zdjYuNEgwdjMuMmgxMC45VjE2aDIuM1Y5LjZIMjRWNi40em0tLjUgMHoiIGNsYXNzPSJjbHMtMyIvPjxwYXRoIGQ9Ik0yMS40IDBMMTQgNC45VjB6IiBjbGFzcz0iY2xzLTIiLz48cGF0aCBkPSJNMjQgMGwtOCA1LjNoLTEuNmw4LTUuM0gyNHoiIGNsYXNzPSJjbHMtMSIvPjxwYXRoIGQ9Ik0xOC44IDUuM0wyNCAxLjh2My41eiIgY2xhc3M9ImNscy0yIi8+PHBhdGggZD0iTTI0IDE2aC0yLjZMMTQgMTEuMVYxNmgtMVY5LjZoMTF2MWgtNS40bDUuNCAzLjZ2LjdsLTYuNS00LjNoLTEuN3pNMi42IDE2aC0xbDguMy01LjRIOC4yTDAgMTZ2LTEuOGw1LjQtMy42SDB2LTFoMTAuOVYxNkgxMHYtNC45eiIgY2xhc3M9ImNscy00Ii8+PHBhdGggZD0iTTEwLjkgMTAuNnptMS44LTQuMnoiIGNsYXNzPSJjbHMtMSIvPjxwYXRoIGQ9Ik0wIDEuMmw2LjIgNEg4bC04LTVWMGgyLjZMMTAgNC45VjBoLjl2Ni40SDBWNS4zaDUuMkwwIDEuOHoiIGNsYXNzPSJjbHMtNCIvPjxwYXRoIGQ9Ik0wIDEuMlYwbDggNS4ySDYuMXoiIGNsYXNzPSJjbHMtMSIvPjxwYXRoIGQ9Ik0xNCAwdjQuOUwyMS41IDBoMWwtOCA1LjNIMTZMMjQgMHYxLjdsLTUuMiAzLjVIMjR2MS4xSDEzLjJWMHoiIGNsYXNzPSJjbHMtNCIvPjxwYXRoIGQ9Ik0yNCAwbC04IDUuM2gtMS42bDgtNS4zSDI0ek0xLjcgMTZIMGw4LjItNS40aDEuN3pNMjQgMTZsLTguMi01LjRoMS43bDYuNSA0LjN6IiBjbGFzcz0iY2xzLTEiLz48cGF0aCBkPSJNMCAxLjJWMGw4IDUuMkg2LjF6TTI0IDE2bC04LjItNS40aDEuN2w2LjUgNC4zem0wLTE2bC04IDUuM2gtMS42bDgtNS4zSDI0ek0xLjcgMTZIMGw4LjItNS40aDEuN3oiIGNsYXNzPSJjbHMtMyIvPjwvc3ZnPgo=");
+
+  /* eo.svg - Flag of Esperanto */
+  --languageselector-flag-eo: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PGRlZnMvPjxkZWZzPjxzdHlsZT4uZmlsMHtmaWxsOiMwMDkyM2Z9PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTAgMGgyNHYxNkgweiIgY2xhc3M9ImZpbDAiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDcuOXY4SDB6Ii8+PHBhdGggZD0iTTQgMS4zbC42IDJoMkw1IDQuM2wuNiAyTDQgNS4xIDIuNCA2LjIgMyA0LjQgMS40IDMuMmgyeiIgY2xhc3M9ImZpbDAiLz48L3N2Zz4K");
+
+  /* es.svg - Flag of Spain */
+  --languageselector-flag-es: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiIgdmVyc2lvbj0iMS4wIj4KICA8cGF0aCBmaWxsPSIjYzYwYjFlIiBkPSJNMCAxMmgyNHY0SDB6Ii8+CiAgPHBhdGggZmlsbD0iI2ZmYzQwMCIgZD0iTTAgNGgyNHY4SDB6Ii8+CiAgPHBhdGggZmlsbD0iI2M2MGIxZSIgZD0iTTAgMGgyNHY0SDB6Ii8+Cjwvc3ZnPgo=");
+
+  /* fi.svg - Flag of Finland */
+  --languageselector-flag-fi: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMGgyNHYxNkgweiIvPjxnIGZpbGw9IiMwMDYyZGEiPjxwYXRoIGQ9Ik0wIDUuOWgyNFYxMEgweiIvPjxwYXRoIGQ9Ik02LjcgMGg0djE2aC00eiIvPjwvZz48L3N2Zz4K");
+
+  /* fr.svg - Flag of France */
+  --languageselector-flag-fr: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PGRlZnMvPjxwYXRoIGZpbGw9IiMwMDIzOTQiIGQ9Ik0wIDBoOHYxNkgweiIvPjxwYXRoIGZpbGw9IiNmOGY4ZjgiIGQ9Ik04IDBoOHYxNkg4eiIvPjxwYXRoIGZpbGw9IiNlZTI4MzgiIGQ9Ik0xNiAwaDh2MTZoLTh6Ii8+PC9zdmc+Cg==");
+
+  /* it.svg - Flag of Italy */
+  --languageselector-flag-it: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iIzAwOTI0NiIgZD0iTTAgMGg4djE2SDB6Ii8+PHBhdGggZmlsbD0iI2Y4ZjhmOCIgZD0iTTggMGg4djE2SDh6Ii8+PHBhdGggZmlsbD0iI2NlMmIzNyIgZD0iTTE2IDBoOHYxNmgtOHoiLz48L3N2Zz4K");
+
+  /* ko.svg - Flag of South Korea */
+  --languageselector-flag-ko: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9Ii4xMSIgZD0iTS4wMS4wMUgyMy45VjE1LjlILjAxeiIvPjxwYXRoIGZpbGw9IiNjNjBjMzAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTguMTcgNS4zMmEzLjk4IDMuOTkgODkuNzggMCAxIDMuNTctMS43NiAzLjk4IDMuOTkgODkuNzggMCAxIDMuMzIgMi4yIDMuOTggMy45OSA4OS43OCAwIDEtLjI2IDMuOTgiLz48cGF0aCBmaWxsPSIjMDAzNDc4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC44NCA5LjY4YTMuOTkgMy45OC0uMjIgMCAxLTMuNTcgMS43NyAzLjk5IDMuOTgtLjIyIDAgMS0zLjMyLTIuMjEgMy45OSAzLjk4LS4yMiAwIDEgLjI2LTMuOTciLz48cGF0aCBmaWxsPSIjMDAzNDc4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMS40OCA3LjUyYTEuOTkgMiA4OS43OCAwIDEgMS43OS0uODggMS45OSAyIDg5Ljc4IDAgMSAxLjY2IDEuMSAxLjk5IDIgODkuNzggMCAxLS4xMyAyIi8+PHBhdGggZmlsbD0iI2M2MGMzMCIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTEuNTYgNy40MWEyIDEuOTktLjIyIDAgMS0xLjc4Ljg4IDIgMS45OS0uMjIgMCAxLTEuNjYtMS4xIDIgMS45OS0uMjIgMCAxIC4xMy0xLjk5Ii8+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNS45OCAxLjQzIDMuNzcgNC43NGwtLjU1LS4zNiAyLjIxLTMuMzF6bTEuNjYgMS4xMS0yLjIxIDMuMy0uNTUtLjM2IDIuMi0zLjN6bS0uODQtLjU2TDQuNiA1LjNsLS41Ni0uMzYgMi4yMi0zLjMxem0xMi4xOCA4LjEtMS4wMiAxLjUyLS41NS0uMzcgMS4wMi0xLjUxem0tMS4yIDEuOC0xLjAyIDEuNTEtLjU0LS4zNiAxLTEuNTJ6bTIuMDItMS4yNS0xLjAxIDEuNTItLjU1LS4zNyAxLjAxLTEuNTF6bS0xLjY2LTEuMS0xIDEuNTEtLjU2LS4zNiAxLjAxLTEuNTJ6bS0xLjIgMS44LTEgMS41MS0uNTYtLjM3IDEuMDEtMS41MXptMS42NiAxLjEtMS4wMSAxLjUxLS41NS0uMzYgMS4wMS0xLjUyek0xNS45IDIuMTlsMSAxLjUxLS41NS4zNy0xLTEuNTF6bTEuMiAxLjggMSAxLjUxLS41NS4zNy0xLTEuNTJ6bTEuNjUtMS4xMSAxLjAxIDEuNTItLjU1LjM2LTEuMDEtMS41MXptLTEuMi0xLjc5IDEuMDEgMS41MS0uNTUuMzctMS0xLjUyem0tLjgyLjU1IDIuMiAzLjMtLjU0LjM3LTIuMjEtMy4zek02LjI4IDEzLjM2bC0xLjAxLTEuNTEuNTUtLjM3IDEgMS41MXptLTEuMi0xLjc5LTEtMS41MS41NC0uMzcgMS4wMSAxLjUyem0uMzcgMi4zMy0yLjItMy4zLjU0LS4zN0w2IDEzLjU0em0xLjY2LTEuMUw0LjkgOS41bC41NS0uMzcgMi4yMSAzLjMxeiIvPjwvc3ZnPg==");
+
+  /* ru.svg - Flag of Russia */
+  --languageselector-flag-ru: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMHY1aDI0VjB6Ii8+PHBhdGggZmlsbD0iIzM1MmI4NyIgZD0iTTAgNWgyNC03eiIvPjxwYXRoIGZpbGw9IiMwMzAzN2YiIGQ9Ik0wIDV2NmgyNFY1eiIvPjxwYXRoIGZpbGw9IiM4MzAxM2YiIGQ9Ik0wIDExaDI0djVIMGgyNHYtNXoiLz48cGF0aCBmaWxsPSIjZmYwMTAxIiBkPSJNMCAxMXY1aDI0di01eiIvPjwvc3ZnPgo=");
+}
+
+/* Apply flag icons to language buttons using data-lang attribute */
+[data-lang="ca"]::before,
+[data-lang="de"]::before,
+[data-lang="en"]::before,
+[data-lang="eo"]::before,
+[data-lang="es"]::before,
+[data-lang="fi"]::before,
+[data-lang="fr"]::before,
+[data-lang="it"]::before,
+[data-lang="ko"]::before,
+[data-lang="ru"]::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+
+[data-lang="ca"]::before {
+  background-image: var(--languageselector-flag-ca);
+}
+
+[data-lang="de"]::before {
+  background-image: var(--languageselector-flag-de);
+}
+
+[data-lang="en"]::before {
+  background-image: var(--languageselector-flag-en);
+}
+
+[data-lang="eo"]::before {
+  background-image: var(--languageselector-flag-eo);
+}
+
+[data-lang="es"]::before {
+  background-image: var(--languageselector-flag-es);
+}
+
+[data-lang="fi"]::before {
+  background-image: var(--languageselector-flag-fi);
+}
+
+[data-lang="fr"]::before {
+  background-image: var(--languageselector-flag-fr);
+}
+
+[data-lang="it"]::before {
+  background-image: var(--languageselector-flag-it);
+}
+
+[data-lang="ko"]::before {
+  background-image: var(--languageselector-flag-ko);
+}
+
+[data-lang="ru"]::before {
+  background-image: var(--languageselector-flag-ru);
+}

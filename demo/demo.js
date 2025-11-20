@@ -93,6 +93,7 @@ function main() {
   // Store all language selector controls for programmatic access
   const controls = [];
 
+  // Icons are now provided via CSS (leaflet.languageselector-flags.css)
   const languageArray = [
     langObject("ca", "Català"),
     langObject("de", "Deutsch"),
@@ -104,18 +105,6 @@ function main() {
     langObject("it", "Italiano"),
     langObject("ko", "한국어"),
     langObject("ru", "Русский")
-  ];
-  const languageArrayWithIcons = [
-    langObject("ca", "Català", "../images/ca.svg"),
-    langObject("de", "Deutsch", "../images/de.svg"),
-    langObject("en", "English", "../images/en.svg"),
-    langObject("eo", "Esperanto", "../images/eo.svg"),
-    langObject("es", "Español", "../images/es.svg"),
-    langObject("fi", "Suomi", "../images/fi.svg"),
-    langObject("fr", "Français", "../images/fr.svg"),
-    langObject("it", "Italiano", "../images/it.svg"),
-    langObject("ko", "한국어", "../images/ko.svg"),
-    langObject("ru", "Русский", "../images/ru.svg")
   ];
 
   // Add horizontal versions as button
@@ -137,7 +126,7 @@ function main() {
     button: true
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     title: "Language",
     vertical: false,
@@ -146,7 +135,7 @@ function main() {
     button: true
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "topleft",
@@ -173,7 +162,7 @@ function main() {
     button: true
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     title: "Language",
     vertical: true,
@@ -182,7 +171,7 @@ function main() {
     button: true
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topleft",
@@ -209,7 +198,7 @@ function main() {
     button: false
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     vertical: true,
     position: "topright",
@@ -217,7 +206,7 @@ function main() {
     button: false
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     title: "Language",
     vertical: true,
@@ -245,7 +234,7 @@ function main() {
     button: false
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     vertical: false,
     position: "bottomleft",
@@ -253,7 +242,7 @@ function main() {
     button: false
   }).addTo(map));
   controls.push(languageSelector({
-    languages: languageArrayWithIcons,
+    languages: languageArray,
     callback: changeLanguage,
     title: "Language",
     vertical: false,
