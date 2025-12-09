@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.3.0...v3.4.0) (2025-12-09)
+
+### Added
+
+- add buttonTitle option for collapsed control tooltip ([d36da07](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/commit/d36da0783de3cff88bc61eed428df511d5ed29c2))
+
 ## [3.3.0](https://github.com/KristjanESPERANTO/Leaflet.LanguageSelector/compare/v3.2.1...v3.3.0) - 2025-11-20
 
 ### Added
