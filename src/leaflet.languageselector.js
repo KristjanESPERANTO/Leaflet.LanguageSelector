@@ -20,6 +20,7 @@ const LanguageSelector = Control.extend({
     languages: [],
     callback: null,
     title: null,
+    buttonTitle: "Language selector",
     position: "topright",
     vertical: true,
     initialLanguage: null,
@@ -271,7 +272,8 @@ const LanguageSelector = Control.extend({
       this._container.setAttribute("tabindex", "0");
       this._container.setAttribute("role", "button");
       this._container.setAttribute("aria-expanded", "false");
-      this._container.setAttribute("aria-label", "Language selector");
+      this._container.setAttribute("aria-label", this.options.buttonTitle);
+      this._container.setAttribute("title", this.options.buttonTitle);
 
       // Toggle handler: only toggle if not clicking on language buttons
       this._onContainerClick = (event) => {
@@ -349,7 +351,8 @@ const langObject = (langId, text) => ({
  * @param {object} options - Configuration options for the language selector
  * @param {Array} options.languages - Array of language objects created with langObject()
  * @param {LanguageChangeCallback} options.callback - Callback function invoked when language changes
- * @param {string} [options.title] - Optional title displayed above the language selector
+ * @param {string} [options.title] - Optional title displayed above the language selector (when expanded)
+ * @param {string} [options.buttonTitle] - Tooltip title for the collapsed button (default: 'Language selector')
  * @param {string} [options.position] - Position on the map ('topright', 'topleft', 'bottomright', 'bottomleft')
  * @param {boolean} [options.vertical] - Whether to display languages vertically (true) or horizontally (false)
  * @param {string} [options.initialLanguage] - Initial language to be selected

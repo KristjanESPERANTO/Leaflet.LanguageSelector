@@ -142,16 +142,17 @@ if (lang) control.setLanguage(lang);
 
 Configuration options for `languageSelector()`:
 
-| Option          | Type     | Default      | Description                                                                         |
-| --------------- | -------- | ------------ | ----------------------------------------------------------------------------------- |
-| **languages**   | Array    | **required** | Array of language objects (use `langObject()` to create them)                       |
-| **callback**    | Function | **required** | Callback function invoked when language changes. Receives language ID as parameter. |
-| title           | String   | `null`       | Optional title displayed above the selector                                         |
-| vertical        | Boolean  | `true`       | Display languages vertically (true) or horizontally (false)                         |
-| initialLanguage | String   | `null`       | Language ID to be initially selected                                                |
-| position        | String   | `'topright'` | Control position: 'topright', 'topleft', 'bottomright', 'bottomleft'                |
-| button          | Boolean  | `true`       | Display as collapsible button (true) or always expanded (false)                     |
-| showText        | Boolean  | `false`      | Show language text next to icons (true) or icons only with tooltip (false)          |
+| Option          | Type     | Default               | Description                                                                         |
+| --------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- |
+| **languages**   | Array    | **required**          | Array of language objects (use `langObject()` to create them)                       |
+| **callback**    | Function | **required**          | Callback function invoked when language changes. Receives language ID as parameter. |
+| title           | String   | `null`                | Optional title displayed above the selector (when expanded)                         |
+| buttonTitle     | String   | `'Language selector'` | Tooltip title for the collapsed button                                              |
+| vertical        | Boolean  | `true`                | Display languages vertically (true) or horizontally (false)                         |
+| initialLanguage | String   | `null`                | Language ID to be initially selected                                                |
+| position        | String   | `'topright'`          | Control position: 'topright', 'topleft', 'bottomright', 'bottomleft'                |
+| button          | Boolean  | `true`                | Display as collapsible button (true) or always expanded (false)                     |
+| showText        | Boolean  | `false`               | Show language text next to icons (true) or icons only with tooltip (false)          |
 
 ## Styling
 
