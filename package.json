@@ -44,6 +44,7 @@
   "homepage": "https://kristjanesperanto.github.io/Leaflet.LanguageSelector/",
   "devDependencies": {
     "@eslint/css": "^0.14.1",
+    "commit-and-tag-version": "^12.6.1",
     "@eslint/js": "^9.39.1",
     "@eslint/markdown": "^7.5.1",
     "@stylistic/eslint-plugin": "^5.6.1",
@@ -64,6 +65,9 @@
   "scripts": {
     "lint": "eslint && prettier --check . && cspell lint --no-progress .",
     "lint:fix": "eslint --fix && prettier --write .",
+    "release": "commit-and-tag-version",
+    "release:minor": "commit-and-tag-version --release-as minor",
+    "release:major": "commit-and-tag-version --release-as major",
     "spellcheck": "cspell --no-progress .",
     "test": "npm run lint",
     "prepare": "simple-git-hooks"

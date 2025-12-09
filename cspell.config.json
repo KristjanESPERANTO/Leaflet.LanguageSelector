@@ -14,6 +14,7 @@
     "Esperanto",
     "Español",
     "evenodd",
+    "flexbox",
     "Français",
     "importmap",
     "Inkscape",
@@ -27,7 +28,8 @@
     "SVGOMG",
     "unpkg",
     "veggiekarte",
-    "Русский"
+    "Русский",
+    "versionrc"
   ],
   "ignorePaths": ["node_modules", "package-lock.json", ".git", "dist", "build", "*.min.js", "*.min.css", "*.svg"]
 }
